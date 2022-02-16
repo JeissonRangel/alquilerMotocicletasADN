@@ -14,12 +14,12 @@ public class Motocicleta {
     private String anioModelo;
     private boolean disponible;
 
-    public Motocicleta(Long id, double valorMotocicleta, String anioModelo) {
+    public Motocicleta(Long id, double valorMotocicleta, String anioModelo, boolean disponible) {
         validarObligatorio(valorMotocicleta,DEBE_INGRESAR_VALOR_MOTOCICLETA);
         validarObligatorio(anioModelo,DEBE_INGRESAR_ANIO_MODELO);
         this.id = id;
         this.valorMotocicleta = valorMotocicleta;
         this.anioModelo = anioModelo;
-        this.disponible = true;
+        this.disponible = disponible;
     }
 }

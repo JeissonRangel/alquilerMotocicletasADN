@@ -14,10 +14,10 @@ public class Alquiler {
     private Long id;
     private Long personaId;
     private int cantidadDiasAlquiler;
-    private boolean planeaSalirDeLaCiudad;
-    private boolean planeaLlevarParrillero;
+    private Boolean planeaSalirDeLaCiudad;
+    private Boolean planeaLlevarParrillero;
 
-    public Alquiler(Long id, Long personaId, int cantidadDiasAlquiler, boolean planeaSalirDeLaCiudad, boolean planeaLlevarParrillero) {
+    public Alquiler(Long id, Long personaId, int cantidadDiasAlquiler, Boolean planeaSalirDeLaCiudad, Boolean planeaLlevarParrillero) {
         validarObligatorio(personaId,DEBE_INGRESAR_UNA_IDENTIFICACION);
         validarPositivo((double) cantidadDiasAlquiler,DEBE_INGRESAR_UNA_CANTIDAD_DE_DIAS_VALIDA);
 
