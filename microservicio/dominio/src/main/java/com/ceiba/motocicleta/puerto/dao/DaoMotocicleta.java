@@ -1,0 +1,10 @@
+package com.ceiba.motocicleta.puerto.dao;
+
+import com.ceiba.motocicleta.modelo.dao.DtoMotocicleta;
+
+import java.util.List;
+
+public interface DaoMotocicleta {
+    List<DtoMotocicleta> listar();
+    DtoMotocicleta buscarPorId(Long id);
+}
