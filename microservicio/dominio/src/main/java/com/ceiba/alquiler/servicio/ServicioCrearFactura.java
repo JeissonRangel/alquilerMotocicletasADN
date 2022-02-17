@@ -12,7 +12,6 @@ public class ServicioCrearFactura {
     private static final float PORCENTAJE_POLIZA_CON_PARRILLERO = 0.24F;
 
     private final RepositorioFactura repositorioFactura;
-    private final DaoAlquiler daoAlquiler;
     private final DtoAlquiler dtoAlquiler;
 
     public ServicioCrearFactura(RepositorioFactura repositorioFactura, DtoAlquiler dtoAlquiler) {

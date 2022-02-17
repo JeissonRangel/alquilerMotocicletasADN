@@ -25,7 +25,7 @@ public class ServicioCrearAlquiler {
     }
 
     public Long ejecutar(Alquiler alquiler){
-        calcularFechaDevolucion(alquiler);
+        alquiler.setFechaDevolucion(calcularFechaDevolucion(alquiler));
         return this.repositorioAlquiler.crear(alquiler);
     };
 
