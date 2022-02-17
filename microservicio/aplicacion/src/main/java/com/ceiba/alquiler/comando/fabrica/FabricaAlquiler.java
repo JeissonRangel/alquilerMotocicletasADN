@@ -1,6 +1,6 @@
 package com.ceiba.alquiler.comando.fabrica;
 
-import com.ceiba.alquiler.ComandoAlquiler;
+import com.ceiba.alquiler.comando.ComandoAlquiler;
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +10,7 @@ public class FabricaAlquiler {
         return new Alquiler(
                 comandoAlquiler.getId(),
                 comandoAlquiler.getPersonaId(),
+                comandoAlquiler.getMotocicletaID(),
                 comandoAlquiler.getCantidadDiasAlquiler(),
                 comandoAlquiler.isPlaneaSalirDeLaCiudad(),
                 comandoAlquiler.isPlaneaLlevarParrillero()

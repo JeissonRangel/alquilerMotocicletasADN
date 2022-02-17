@@ -4,18 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.HashMap;
 
 @Getter
 @Setter
 public class Factura {
 
     private Long id;
-    private double valorTotal;
-    private Map<Integer,String> conceptosFactura;
+    private Double valorTotal;
+    private HashMap<String,Double> conceptosFactura;
     private LocalDate fechaCompra;
 
-    public Factura(Long id, double valorTotal, Map<Integer, String> conceptosFactura, LocalDate fechaCompra) {
+    public Factura(Long id, Double valorTotal, HashMap<String, Double> conceptosFactura, LocalDate fechaCompra) {
         this.id = id;
         this.valorTotal = valorTotal;
         this.conceptosFactura = conceptosFactura;
