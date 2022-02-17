@@ -14,6 +14,8 @@ public class ServicioCrearAlquiler {
     private final RepositorioMotocicleta repositorioMotocicleta;
     private final DaoMotocicleta daoMotocicleta;
 
+    private LocalDate FECHA_ACTUAL = LocalDate.now();
+
     public ServicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler,
                                  RepositorioMotocicleta repositorioMotocicleta,
                                  DaoMotocicleta daoMotocicleta) {
@@ -23,10 +25,11 @@ public class ServicioCrearAlquiler {
     }
 
     public Long ejecutar(Alquiler alquiler){
+        calcularFechaDevolucion(alquiler);
         return this.repositorioAlquiler.crear(alquiler);
     };
 
-    private LocalDate calcularFechaDevolucion(){
-        return null;
+    private LocalDate calcularFechaDevolucion(Alquiler alquiler){
+        return FECHA_ACTUAL.plusDays(alquiler.getCantidadDiasAlquiler());
     }
 }
