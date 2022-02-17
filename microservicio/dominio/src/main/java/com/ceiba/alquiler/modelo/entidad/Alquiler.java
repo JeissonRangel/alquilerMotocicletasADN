@@ -3,6 +3,8 @@ package com.ceiba.alquiler.modelo.entidad;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 import static  com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
@@ -16,6 +18,7 @@ public class Alquiler {
     private Long personaId;
     private Long motocicletaID;
     private int cantidadDiasAlquiler;
+    private LocalDate fechaDevolucion;
     private Boolean planeaSalirDeLaCiudad;
     private Boolean planeaLlevarParrillero;
 
@@ -24,6 +27,7 @@ public class Alquiler {
             Long personaId,
             Long motocicletaId,
             int cantidadDiasAlquiler,
+            LocalDate fechaDevolucion,
             Boolean planeaSalirDeLaCiudad,
             Boolean planeaLlevarParrillero
     ) {
@@ -35,6 +39,7 @@ public class Alquiler {
         this.personaId = personaId;
         this.motocicletaID = motocicletaId;
         this.cantidadDiasAlquiler = cantidadDiasAlquiler;
+        this.fechaDevolucion = fechaDevolucion;
         this.planeaSalirDeLaCiudad = planeaSalirDeLaCiudad;
         this.planeaLlevarParrillero = planeaLlevarParrillero;
     }

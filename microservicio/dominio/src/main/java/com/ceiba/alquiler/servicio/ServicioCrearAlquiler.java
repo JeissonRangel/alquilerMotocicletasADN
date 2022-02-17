@@ -6,6 +6,8 @@ import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
+import java.time.LocalDate;
+
 public class ServicioCrearAlquiler {
 
     private final RepositorioAlquiler repositorioAlquiler;
@@ -24,4 +26,7 @@ public class ServicioCrearAlquiler {
         return this.repositorioAlquiler.crear(alquiler);
     };
 
+    private LocalDate calcularFechaDevolucion(){
+        return null;
+    }
 }
