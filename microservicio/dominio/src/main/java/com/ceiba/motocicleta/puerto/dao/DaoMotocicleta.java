@@ -1,6 +1,6 @@
 package com.ceiba.motocicleta.puerto.dao;
 
-import com.ceiba.motocicleta.modelo.dao.DtoMotocicleta;
+import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 
 import java.util.List;
 

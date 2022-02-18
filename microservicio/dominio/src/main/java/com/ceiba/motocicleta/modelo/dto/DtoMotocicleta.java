@@ -1,4 +1,4 @@
-package com.ceiba.motocicleta.modelo.dao;
+package com.ceiba.motocicleta.modelo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
