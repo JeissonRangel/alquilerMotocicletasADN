@@ -5,5 +5,4 @@ import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 public interface RepositorioMotocicleta {
     Long crear(Motocicleta motocicleta);
     void actualizar(Motocicleta motocicleta);
-    void actualizarEstado(Motocicleta motocicleta);
 }

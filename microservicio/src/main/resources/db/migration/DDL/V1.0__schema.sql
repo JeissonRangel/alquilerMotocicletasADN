@@ -16,3 +16,11 @@ create table alquiler (
  planeaLlevarParrillero BOOLEAN,
  primary key (id)
 );
+
+create table motocicleta (
+ id int(10) not null auto_increment,
+ valorMotocicleta DOUBLE,
+ anioModelo varchar(4),
+ disponible BOOLEAN,
+ primary key (id)
+);
