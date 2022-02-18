@@ -11,17 +11,11 @@ import java.time.LocalDate;
 public class ServicioCrearAlquiler {
 
     private final RepositorioAlquiler repositorioAlquiler;
-    private final RepositorioMotocicleta repositorioMotocicleta;
-    private final DaoMotocicleta daoMotocicleta;
 
     private LocalDate FECHA_ACTUAL = LocalDate.now();
 
-    public ServicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler,
-                                 RepositorioMotocicleta repositorioMotocicleta,
-                                 DaoMotocicleta daoMotocicleta) {
+    public ServicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler) {
         this.repositorioAlquiler = repositorioAlquiler;
-        this.repositorioMotocicleta = repositorioMotocicleta;
-        this.daoMotocicleta = daoMotocicleta;
     }
 
     public Long ejecutar(Alquiler alquiler){
@@ -30,6 +24,6 @@ public class ServicioCrearAlquiler {
     };
 
     private LocalDate calcularFechaDevolucion(Alquiler alquiler){
-        return FECHA_ACTUAL.plusDays(alquiler.getCantidadDiasAlquiler());
+        return FECHA_ACTUAL.plusDays((long) alquiler.getCantidadDiasAlquiler());
     }
 }

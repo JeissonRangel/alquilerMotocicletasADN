@@ -19,6 +19,6 @@ public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
         Boolean planeaSalirDeLaCiudad = resultSet.getBoolean("planeaSalirDeLaCiudad");
         Boolean planeaLlevarParrillero = resultSet.getBoolean("planeaLlevarParrillero");
 
-        return null;
+        return new DtoAlquiler(id,idPersona,motocicletaId,cantidadDiasAlquiler,fechaDevolucion,planeaSalirDeLaCiudad,planeaLlevarParrillero);
     }
 }

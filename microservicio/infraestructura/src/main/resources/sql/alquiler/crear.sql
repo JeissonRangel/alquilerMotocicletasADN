@@ -1,2 +1,2 @@
-inser into alquiler (personaId, cantidadDiasAlquiler, planeaSalirDeLaCiudad, planeaLlevarParrillero)
-values (:personaId, :cantidadDiasAlquiler, :planeaSalirDeLaCiudad, :planeaLlevarParrillero)
+insert into alquiler (personaId, motocicletaID, cantidadDiasAlquiler, fechaDevolucion, planeaSalirDeLaCiudad, planeaLlevarParrillero)
+values (:personaId, :motocicletaID, :cantidadDiasAlquiler, :fechaDevolucion, :planeaSalirDeLaCiudad, :planeaLlevarParrillero)

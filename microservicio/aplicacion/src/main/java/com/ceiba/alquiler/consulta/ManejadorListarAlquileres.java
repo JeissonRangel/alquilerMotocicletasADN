@@ -2,9 +2,11 @@ package com.ceiba.alquiler.consulta;
 
 import com.ceiba.alquiler.modelo.dto.DtoAlquiler;
 import com.ceiba.alquiler.puerto.dao.DaoAlquiler;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ManejadorListarAlquileres {
     private final DaoAlquiler daoAlquiler;
 
