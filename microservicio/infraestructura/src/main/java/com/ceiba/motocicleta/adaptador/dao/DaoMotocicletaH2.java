@@ -29,7 +29,7 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
 
     @Override
     public List<DtoMotocicleta> listar() {
-        return null;
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar,new MapeoMotocicleta());
     }
 
     @Override
