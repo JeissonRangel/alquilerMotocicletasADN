@@ -3,12 +3,10 @@ package com.ceiba.alquiler.servicio;
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionNoMotocicletasDisponibles;
-import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class ServicioCrearAlquiler {
 
@@ -17,7 +15,7 @@ public class ServicioCrearAlquiler {
     private final RepositorioMotocicleta repositorioMotocicleta;
     private final DaoMotocicleta daoMotocicleta;
 
-    private LocalDate FECHA_ACTUAL = LocalDate.now();
+    private LocalDate FECHA_DEVOLUCION = LocalDate.now();
 
     public ServicioCrearAlquiler(
             RepositorioAlquiler repositorioAlquiler,
@@ -30,8 +28,8 @@ public class ServicioCrearAlquiler {
     }
 
     public Long ejecutar(Alquiler alquiler){
-        alquiler.setFechaDevolucion(calcularFechaDevolucion(alquiler));
         validarDisponibilidadMotocicletas();
+        calcularFechaDevolucion(alquiler);
         return this.repositorioAlquiler.crear(alquiler);
     };
 
@@ -42,9 +40,10 @@ public class ServicioCrearAlquiler {
         }
     }
 
-    private LocalDate calcularFechaDevolucion(Alquiler alquiler){
+    private void calcularFechaDevolucion(Alquiler alquiler){
         int DIAS_A_SUMAR = alquiler.getCantidadDiasAlquiler();
-        return FECHA_ACTUAL.plusDays(DIAS_A_SUMAR);
+        FECHA_DEVOLUCION.plusDays(DIAS_A_SUMAR);
+        alquiler.setFechaDevolucion(FECHA_DEVOLUCION);
     }
 
 }
