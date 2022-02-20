@@ -42,8 +42,7 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
     }
 
     @Override
-    public DtoMotocicleta buscarDisponibles() {
-        Map<String, Object> parametros = new HashMap<>();
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscaDisponibles, parametros, new MapeoMotocicleta());
+    public List<DtoMotocicleta> buscarDisponibles() {
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlBuscaDisponibles, new MapeoMotocicleta());
     }
 }

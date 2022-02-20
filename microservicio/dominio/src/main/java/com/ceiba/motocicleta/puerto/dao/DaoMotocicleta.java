@@ -7,5 +7,5 @@ import java.util.List;
 public interface DaoMotocicleta {
     List<DtoMotocicleta> listar();
     DtoMotocicleta buscarPorId(Long id);
-    DtoMotocicleta buscarDisponibles();
+    List<DtoMotocicleta> buscarDisponibles();
 }
