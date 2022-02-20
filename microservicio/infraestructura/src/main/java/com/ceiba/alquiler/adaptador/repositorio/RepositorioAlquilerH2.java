@@ -25,6 +25,5 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
 
     @Override
     public void actualizar(Alquiler alquiler) {
-
     }
 }

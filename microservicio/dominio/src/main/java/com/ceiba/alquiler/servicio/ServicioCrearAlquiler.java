@@ -4,6 +4,7 @@ import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionNoMotocicletasDisponibles;
 import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
+import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
@@ -36,15 +37,21 @@ public class ServicioCrearAlquiler {
     };
 
     private void validarDisponibilidadMotocicletas(){
-        Boolean LISTA_VACIA = this.daoMotocicleta.buscarDisponibles().isEmpty();
-        if (LISTA_VACIA){
+        Boolean MOTOCICLETAS_DISPONIBLES = this.daoMotocicleta.validarDisponibilidad();
+        if (!MOTOCICLETAS_DISPONIBLES){
             throw new ExcepcionNoMotocicletasDisponibles(NO_HAY_MOTOCICLETAS_DISPONIBLES);
         }
     }
 
     private void asignarMotocicletaDisponible(Alquiler alquiler){
-        DtoMotocicleta motocicleta = this.daoMotocicleta.buscarDisponibles().get(0);
+        Boolean DISPONIBILIDAD_ACTUALIZADA = false;
+        DtoMotocicleta motocicleta = this.daoMotocicleta.buscarDisponible();
         alquiler.setMotocicletaID(motocicleta.getId());
+        actualizarDisponibilidadMotocicleta(motocicleta.getId(),DISPONIBILIDAD_ACTUALIZADA);
+    }
+
+    private void actualizarDisponibilidadMotocicleta(Long motocicletaId, Boolean disponible){
+        repositorioMotocicleta.actualizarDisponibilidadPorId(motocicletaId, disponible);
     }
 
     private void calcularFechaDevolucion(Alquiler alquiler){

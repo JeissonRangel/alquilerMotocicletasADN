@@ -1,0 +1,1 @@
+select * from motocicleta where disponible = true

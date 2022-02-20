@@ -6,6 +6,9 @@ import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Repository
 public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
 
@@ -16,6 +19,9 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
 
     @SqlStatement(namespace = "motocicleta",value = "actualizar")
     private static String sqlActualizar;
+
+    @SqlStatement(namespace = "motocicleta", value = "actualizarDisponibilidadPorId")
+    private static String sqlActualizarDisponibilidadPorId;
 
     public RepositorioMotocicletaH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -29,5 +35,13 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
     @Override
     public void actualizar(Motocicleta motocicleta) {
         this.customNamedParameterJdbcTemplate.actualizar(motocicleta,sqlActualizar);
+    }
+
+    @Override
+    public void actualizarDisponibilidadPorId(Long id, Boolean disponible) {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("id",id);
+        parametros.put("disponible",disponible);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarDisponibilidadPorId,parametros);
     }
 }

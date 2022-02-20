@@ -21,8 +21,11 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
     @SqlStatement(namespace = "motocicleta", value = "buscaId")
     private static String sqlBuscarId;
 
-    @SqlStatement(namespace = "motocicleta", value = "buscaDisponibles")
-    private static String sqlBuscaDisponibles;
+    @SqlStatement(namespace = "motocicleta", value = "buscaMotocicletaDisponible")
+    private static String sqlBuscaDisponible;
+
+    @SqlStatement(namespace = "motocicleta", value = "validarDisponibilidad")
+    private static String sqlValidarDisponibilidad;
 
     public DaoMotocicletaH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -42,7 +45,15 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
     }
 
     @Override
-    public List<DtoMotocicleta> buscarDisponibles() {
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlBuscaDisponibles, new MapeoMotocicleta());
+    public DtoMotocicleta buscarDisponible() {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("disponible",Boolean.TRUE);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscaDisponible, parametros,new MapeoMotocicleta());
+    }
+
+    @Override
+    public Boolean validarDisponibilidad() {
+        int CANTIDAD_DE_DISPONIBLES = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlValidarDisponibilidad, new MapeoMotocicleta()).size();
+        return CANTIDAD_DE_DISPONIBLES > 0;
     }
 }
