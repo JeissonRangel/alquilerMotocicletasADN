@@ -25,4 +25,6 @@ public class ConsultaControladorAlquiler {
     public List<DtoAlquiler> listar(){
         return this.manejadorListarAlquileres.ejecutar();
     }
+
+
 }

@@ -21,4 +21,6 @@ public class ConsultaControladorMotocicleta {
     public List<DtoMotocicleta> listar(){
         return this.manejadorListarMotocicletas.ejecutar();
     }
+
+
 }

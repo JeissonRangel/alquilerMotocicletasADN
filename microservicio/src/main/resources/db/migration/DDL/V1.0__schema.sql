@@ -6,6 +6,14 @@ create table usuario (
  primary key (id)
 );
 
+create table motocicleta (
+ id int(10) not null auto_increment,
+ valorMotocicleta DOUBLE,
+ anioModelo varchar(4),
+ disponible BOOLEAN,
+ primary key (id)
+);
+
 create table alquiler (
  id int(10) not null auto_increment,
  personaId int(10) not null,
@@ -14,13 +22,7 @@ create table alquiler (
  fechaDevolucion datetime null,
  planeaSalirDeLaCiudad BOOLEAN,
  planeaLlevarParrillero BOOLEAN,
- primary key (id)
+ primary key (id),
+ foreign key (motocicletaID) references Motocicleta(id)
 );
 
-create table motocicleta (
- id int(10) not null auto_increment,
- valorMotocicleta DOUBLE,
- anioModelo varchar(4),
- disponible BOOLEAN,
- primary key (id)
-);

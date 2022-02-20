@@ -6,7 +6,9 @@ import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class DaoMotocicletaH2 implements DaoMotocicleta {
@@ -34,11 +36,14 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
 
     @Override
     public DtoMotocicleta buscarPorId(Long id) {
-        return null;
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("id", id);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarId, parametros, new MapeoMotocicleta());
     }
 
     @Override
-    public List<DtoMotocicleta> buscarDisponibles() {
-        return null;
+    public DtoMotocicleta buscarDisponibles() {
+        Map<String, Object> parametros = new HashMap<>();
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscaDisponibles, parametros, new MapeoMotocicleta());
     }
 }
