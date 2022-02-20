@@ -33,7 +33,6 @@ public class Alquiler {
     ) {
         validarObligatorio(personaId,DEBE_INGRESAR_UNA_IDENTIFICACION);
         validarPositivo((double) cantidadDiasAlquiler,DEBE_INGRESAR_UNA_CANTIDAD_DE_DIAS_VALIDA);
-        validarObligatorio(motocicletaId, DEBE_INGRESAR_ID_MOTOCICLETA);
 
         this.id = id;
         this.personaId = personaId;

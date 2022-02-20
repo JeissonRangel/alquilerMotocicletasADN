@@ -3,6 +3,7 @@ package com.ceiba.alquiler.servicio;
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionNoMotocicletasDisponibles;
+import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
@@ -30,6 +31,7 @@ public class ServicioCrearAlquiler {
     public Long ejecutar(Alquiler alquiler){
         validarDisponibilidadMotocicletas();
         calcularFechaDevolucion(alquiler);
+        asignarMotocicletaDisponible(alquiler);
         return this.repositorioAlquiler.crear(alquiler);
     };
 
@@ -38,6 +40,11 @@ public class ServicioCrearAlquiler {
         if (LISTA_VACIA){
             throw new ExcepcionNoMotocicletasDisponibles(NO_HAY_MOTOCICLETAS_DISPONIBLES);
         }
+    }
+
+    private void asignarMotocicletaDisponible(Alquiler alquiler){
+        DtoMotocicleta motocicleta = this.daoMotocicleta.buscarDisponibles().get(0);
+        alquiler.setMotocicletaID(motocicleta.getId());
     }
 
     private void calcularFechaDevolucion(Alquiler alquiler){
