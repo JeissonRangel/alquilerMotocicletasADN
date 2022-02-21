@@ -38,9 +38,9 @@ public class ServicioCrearAlquiler {
 
     private void validarDisponibilidadMotocicletas(){
         Boolean MOTOCICLETAS_DISPONIBLES = this.daoMotocicleta.validarDisponibilidad();
-        if (!MOTOCICLETAS_DISPONIBLES){
+
+        if (!MOTOCICLETAS_DISPONIBLES)
             throw new ExcepcionNoMotocicletasDisponibles(NO_HAY_MOTOCICLETAS_DISPONIBLES);
-        }
     }
 
     private void asignarMotocicletaDisponible(Alquiler alquiler){
