@@ -4,7 +4,6 @@ import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionNoMotocicletasDisponibles;
 import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
-import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
@@ -12,12 +11,12 @@ import java.time.LocalDate;
 
 public class ServicioCrearAlquiler {
 
-    private final String NO_HAY_MOTOCICLETAS_DISPONIBLES = "En este momento no hay motocicletas disponibles para alquilar";
+    private static final String NO_HAY_MOTOCICLETAS_DISPONIBLES = "En este momento no hay motocicletas disponibles para alquilar";
     private final RepositorioAlquiler repositorioAlquiler;
     private final RepositorioMotocicleta repositorioMotocicleta;
     private final DaoMotocicleta daoMotocicleta;
 
-    private LocalDate FECHA_DEVOLUCION = LocalDate.now();
+    private LocalDate fechaDevolucion = LocalDate.now();
 
     public ServicioCrearAlquiler(
             RepositorioAlquiler repositorioAlquiler,
@@ -37,17 +36,17 @@ public class ServicioCrearAlquiler {
     }
 
     private void validarDisponibilidadMotocicletas(){
-        Boolean MOTOCICLETAS_DISPONIBLES = this.daoMotocicleta.validarDisponibilidad();
+        Boolean motocicletasDisponibles = this.daoMotocicleta.validarDisponibilidad();
 
-        if (!MOTOCICLETAS_DISPONIBLES)
+        if (!motocicletasDisponibles)
             throw new ExcepcionNoMotocicletasDisponibles(NO_HAY_MOTOCICLETAS_DISPONIBLES);
     }
 
     private void asignarMotocicletaDisponible(Alquiler alquiler){
-        Boolean DISPONIBILIDAD_ACTUALIZADA = false;
+        Boolean disponibilidadActualizada = false;
         DtoMotocicleta motocicleta = this.daoMotocicleta.buscarDisponible();
         alquiler.setMotocicletaID(motocicleta.getId());
-        actualizarDisponibilidadMotocicleta(motocicleta.getId(),DISPONIBILIDAD_ACTUALIZADA);
+        actualizarDisponibilidadMotocicleta(motocicleta.getId(),disponibilidadActualizada);
     }
 
     private void actualizarDisponibilidadMotocicleta(Long motocicletaId, Boolean disponible){
@@ -55,9 +54,9 @@ public class ServicioCrearAlquiler {
     }
 
     private void calcularFechaDevolucion(Alquiler alquiler){
-        int DIAS_A_SUMAR = alquiler.getCantidadDiasAlquiler();
-        FECHA_DEVOLUCION.plusDays(DIAS_A_SUMAR);
-        alquiler.setFechaDevolucion(FECHA_DEVOLUCION);
+        int diasASumar = alquiler.getCantidadDiasAlquiler();
+        LocalDate fechaDevolucion = this.fechaDevolucion.plusDays(diasASumar);
+        alquiler.setFechaDevolucion(fechaDevolucion);
     }
 
 }

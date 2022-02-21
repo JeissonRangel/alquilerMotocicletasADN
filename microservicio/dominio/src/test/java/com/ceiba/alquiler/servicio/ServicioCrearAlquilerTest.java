@@ -71,7 +71,6 @@ public class ServicioCrearAlquilerTest {
         Mockito.doReturn(1L).when(motocicleta).getId();
         Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarDisponible();
         Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
-        //Mockito.doReturn(1L).when(repositorioAlquiler).crear(alquiler);
 
         FECHA_ACTUAL.plusDays(cantidadDiasAlquiler);
 

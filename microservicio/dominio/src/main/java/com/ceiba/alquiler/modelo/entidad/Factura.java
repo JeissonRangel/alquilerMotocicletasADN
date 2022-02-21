@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 
 import static  com.ceiba.dominio.ValidadorArgumento.*;
 
@@ -16,14 +15,16 @@ public class Factura {
     private Long id;
     private Long idAlquiler;
     private Double valorTotal;
-    private HashMap<String,Double> conceptosFactura;
+    private Double seguroVehiculo;
+    private Double polizaPersonal;
     private LocalDate fechaCompra;
 
     public Factura(
             Long id,
             Long idAlquiler,
             Double valorTotal,
-            HashMap<String, Double> conceptosFactura,
+            Double seguroVehiculo,
+            Double polizaPersonal,
             LocalDate fechaCompra
     ) {
         validarObligatorio(idAlquiler,DEBE_INGRESAR_UN_ID_ALQUILER);
@@ -31,7 +32,8 @@ public class Factura {
         this.id = id;
         this.idAlquiler = idAlquiler;
         this.valorTotal = valorTotal;
-        this.conceptosFactura = conceptosFactura;
+        this.seguroVehiculo = seguroVehiculo;
+        this.polizaPersonal = polizaPersonal;
         this.fechaCompra = fechaCompra;
     }
 }
