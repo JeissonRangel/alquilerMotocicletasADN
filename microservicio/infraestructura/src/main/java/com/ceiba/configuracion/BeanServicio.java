@@ -1,6 +1,8 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.alquiler.puerto.dao.DaoAlquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
+import com.ceiba.alquiler.servicio.ServicioActualizarAlquiler;
 import com.ceiba.alquiler.servicio.ServicioCrearAlquiler;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
@@ -14,6 +16,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanServicio {
+
+    @Bean
+    public ServicioActualizarAlquiler servicioActualizarAlquiler(RepositorioAlquiler repositorioAlquiler, DaoAlquiler daoAlquiler){
+        return new ServicioActualizarAlquiler(repositorioAlquiler,daoAlquiler);
+    }
 
     @Bean
     public ServicioCrearAlquiler servicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler, RepositorioMotocicleta repositorioMotocicleta, DaoMotocicleta daoMotocicleta){

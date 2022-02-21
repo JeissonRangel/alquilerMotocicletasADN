@@ -14,6 +14,9 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
     @SqlStatement(namespace="alquiler", value="crear")
     private static String sqlCrear;
 
+    @SqlStatement(namespace="alquiler",value = "actualizar")
+    private static String sqlActualizar;
+
     public RepositorioAlquilerH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -25,5 +28,6 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
 
     @Override
     public void actualizar(Alquiler alquiler) {
+        this.customNamedParameterJdbcTemplate.actualizar(alquiler,sqlActualizar);
     }
 }

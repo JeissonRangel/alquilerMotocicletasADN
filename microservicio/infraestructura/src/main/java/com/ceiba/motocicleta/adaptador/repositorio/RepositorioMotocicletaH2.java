@@ -23,6 +23,9 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
     @SqlStatement(namespace = "motocicleta", value = "actualizarDisponibilidadPorId")
     private static String sqlActualizarDisponibilidadPorId;
 
+    @SqlStatement(namespace = "motocicleta",value = "existePorId")
+    private static String sqlExistePorId;
+
     public RepositorioMotocicletaH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -44,4 +47,5 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
         parametros.put("disponible",disponible);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarDisponibilidadPorId,parametros);
     }
+
 }
