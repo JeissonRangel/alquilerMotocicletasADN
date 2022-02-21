@@ -9,7 +9,6 @@ import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
-import com.ceiba.motocicleta.servicio.testdatabuilder.MotocicletaTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -58,7 +57,10 @@ public class ServicioCrearAlquilerTest {
         Mockito.doReturn(false).when(daoMotocicleta).validarDisponibilidad();
 
         //Act-Assert
-        BasePrueba.assertThrows(() -> servicioCrearAlquiler.ejecutar(alquiler), ExcepcionNoMotocicletasDisponibles.class, NO_HAY_MOTOCICLETAS_DISPONIBLES);
+        BasePrueba.assertThrows(() -> servicioCrearAlquiler.ejecutar(alquiler),
+                ExcepcionNoMotocicletasDisponibles.class,
+                NO_HAY_MOTOCICLETAS_DISPONIBLES
+        );
     }
 
     @Test
@@ -81,10 +83,15 @@ public class ServicioCrearAlquilerTest {
     @Test
     @DisplayName("Deberia crear el alquiler de forma correcta")
     void deberiaCrearElAlquilerDeFormaCorrecta(){
-        Long idMotocicleta = motocicleta.getId();
+        Mockito.doReturn(true).when(daoMotocicleta).validarDisponibilidad();
+        Mockito.doReturn(1L).when(motocicleta).getId();
+        Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarDisponible();
+        Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
+        Mockito.doReturn(1L).when(repositorioAlquiler).crear(alquiler);
 
-        servicioCrearAlquiler.ejecutar(alquiler);
+        Long idAlquiler = servicioCrearAlquiler.ejecutar(alquiler);
 
+        assertEquals(1L,idAlquiler);
 
     }
 }
