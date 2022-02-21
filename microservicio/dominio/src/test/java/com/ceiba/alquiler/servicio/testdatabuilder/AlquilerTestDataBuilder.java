@@ -1,5 +1,7 @@
 package com.ceiba.alquiler.servicio.testdatabuilder;
 
+import com.ceiba.alquiler.modelo.entidad.Alquiler;
+
 import java.time.LocalDate;
 
 public class AlquilerTestDataBuilder {
@@ -12,27 +14,42 @@ public class AlquilerTestDataBuilder {
     private Boolean planeaLlevarParrillero;
 
     public AlquilerTestDataBuilder(){
-        personaId = 1090494353L;
+        personaId = 1L;
         motocicletaID = 1L;
         cantidadDiasAlquiler=10;
-        planeaSalirDeLaCiudad=true;
-        planeaLlevarParrillero=true;
+        fechaDevolucion = null;
+        planeaSalirDeLaCiudad = true;
+        planeaLlevarParrillero = true;
     }
 
     public AlquilerTestDataBuilder conId(Long id){
         this.id=id;
         return this;
     }
-    public AlquilerTestDataBuilder sinPersonaId(Long personaId){
+    public AlquilerTestDataBuilder conMotocicletaId(Long motocicletaID){
+        this.motocicletaID = motocicletaID;
+        return this;
+    }
+    public AlquilerTestDataBuilder sinPersonaId(){
         this.personaId=null;
         return this;
     }
-    public AlquilerTestDataBuilder sinMotocicletaId(Long motocicletaID){
+    public AlquilerTestDataBuilder sinMotocicletaId(){
         this.motocicletaID = null;
         return this;
     }
-    public AlquilerTestDataBuilder conCantidadDiasAlquilerCero(int diasAlquiler){
+    public AlquilerTestDataBuilder conCantidadDiasAlquilerCero(){
         this.cantidadDiasAlquiler=0;
         return this;
+    }
+    public Alquiler build(){
+        return new Alquiler(
+                id,
+                personaId,
+                motocicletaID,
+                cantidadDiasAlquiler,
+                fechaDevolucion,
+                planeaSalirDeLaCiudad,
+                planeaLlevarParrillero);
     }
 }
