@@ -12,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AlquilerTest {
 
+    private static final String DEBE_INGRESAR_UNA_IDENTIFICACION = "Debe ingresar una identificacion";
+    private static final String DEBE_INGRESAR_UNA_CANTIDAD_DE_DIAS_VALIDA = "La cantidad de dias que ingreso no es valida";
+    private static final String DEBE_INGRESAR_ID_MOTOCICLETA = "Debe ingresar un id de una motocicleta";
+
+
     @Test
     @DisplayName("Deberia crear correctamente el alquiler")
     void deberiaCrearCorrectamenteElAlquiler(){
@@ -32,7 +37,7 @@ public class AlquilerTest {
         AlquilerTestDataBuilder alquilerTestDataBuilder = new AlquilerTestDataBuilder().conId(1L).sinPersonaId();
         BasePrueba.assertThrows(() -> {
             alquilerTestDataBuilder.build();
-        }, ExcepcionValorObligatorio.class, "Se debe ingresar el id de la persona");
+        }, ExcepcionValorObligatorio.class, DEBE_INGRESAR_UNA_IDENTIFICACION);
     }
 
     @Test
@@ -40,7 +45,7 @@ public class AlquilerTest {
         AlquilerTestDataBuilder alquilerTestDataBuilder = new AlquilerTestDataBuilder().conId(1L).sinMotocicletaId();
         BasePrueba.assertThrows(()->{
             alquilerTestDataBuilder.build();
-        }, ExcepcionValorObligatorio.class,"Se debe ingresar un id de motocicleta");
+        }, ExcepcionValorObligatorio.class,DEBE_INGRESAR_ID_MOTOCICLETA);
     }
 
     @Test
@@ -48,6 +53,6 @@ public class AlquilerTest {
         AlquilerTestDataBuilder alquilerTestDataBuilder = new AlquilerTestDataBuilder().conId(1L).conCantidadDiasAlquilerCero();
         BasePrueba.assertThrows(()->{
             alquilerTestDataBuilder.build();
-        }, ExcepcionValorInvalido.class,"Se debe ingresar una cantidad de dias de alquiler mayor a cero");
+        }, ExcepcionValorInvalido.class,DEBE_INGRESAR_UNA_CANTIDAD_DE_DIAS_VALIDA);
     }
 }

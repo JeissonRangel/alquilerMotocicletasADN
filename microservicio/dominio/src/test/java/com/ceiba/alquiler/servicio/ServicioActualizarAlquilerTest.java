@@ -46,7 +46,7 @@ public class ServicioActualizarAlquilerTest {
     @Test
     @DisplayName("Deberia actualizar el alquiler correctamente")
     void deberiaActualizarElAlquilerCorrectamente(){
-        
+
         Mockito.doReturn(true).when(daoAlquiler).existePorId(Mockito.anyLong());
 
         servicioActualizarAlquiler.ejecutar(alquiler);
