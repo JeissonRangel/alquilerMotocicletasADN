@@ -12,6 +12,6 @@ import lombok.Setter;
 public class ComandoMotocicleta {
     private Long id;
     private Double valorMotocicleta;
-    private String anioModelo;
+    private int anioModelo;
     private Boolean disponible;
 }

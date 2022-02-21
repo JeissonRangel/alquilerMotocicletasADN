@@ -10,6 +10,6 @@ import lombok.AllArgsConstructor;
 public class DtoMotocicleta {
     private Long id;
     private double valorMotocicleta;
-    private String anioModelo;
+    private int anioModelo;
     private boolean disponible;
 }

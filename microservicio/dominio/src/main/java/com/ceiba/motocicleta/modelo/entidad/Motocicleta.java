@@ -13,10 +13,10 @@ public class Motocicleta {
 
     private Long id;
     private Double valorMotocicleta;
-    private String anioModelo;
+    private int anioModelo;
     private Boolean disponible;
 
-    public Motocicleta(Long id, Double valorMotocicleta, String anioModelo, Boolean disponible) {
+    public Motocicleta(Long id, Double valorMotocicleta, int anioModelo, Boolean disponible) {
         validarObligatorio(valorMotocicleta,DEBE_INGRESAR_VALOR_MOTOCICLETA);
         validarObligatorio(anioModelo,DEBE_INGRESAR_ANIO_MODELO);
         this.id = id;
