@@ -34,7 +34,7 @@ public class ServicioCrearAlquiler {
         calcularFechaDevolucion(alquiler);
         asignarMotocicletaDisponible(alquiler);
         return this.repositorioAlquiler.crear(alquiler);
-    };
+    }
 
     private void validarDisponibilidadMotocicletas(){
         Boolean MOTOCICLETAS_DISPONIBLES = this.daoMotocicleta.validarDisponibilidad();

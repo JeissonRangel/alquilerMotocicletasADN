@@ -14,6 +14,7 @@ public class AlquilerTestDataBuilder {
     private Boolean planeaLlevarParrillero;
 
     public AlquilerTestDataBuilder(){
+        id=1L;
         personaId = 1L;
         motocicletaID = 1L;
         cantidadDiasAlquiler=10;
