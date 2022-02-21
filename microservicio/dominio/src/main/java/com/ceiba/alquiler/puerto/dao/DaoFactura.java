@@ -8,7 +8,6 @@ import java.util.List;
 public interface DaoFactura {
 
     List<DtoFactura> listar();
-
     DtoFactura buscarPorId(Long id);
 
 }

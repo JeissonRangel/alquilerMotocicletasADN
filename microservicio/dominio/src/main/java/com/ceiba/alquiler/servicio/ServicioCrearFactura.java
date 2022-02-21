@@ -1,6 +1,7 @@
 package com.ceiba.alquiler.servicio;
 
 import com.ceiba.alquiler.modelo.dto.DtoAlquiler;
+import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.modelo.entidad.Factura;
 import com.ceiba.alquiler.puerto.dao.DaoAlquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioFactura;
@@ -13,18 +14,26 @@ public class ServicioCrearFactura {
 
     private final RepositorioFactura repositorioFactura;
     private final DtoAlquiler dtoAlquiler;
+    private final DaoAlquiler daoAlquiler;
 
-    public ServicioCrearFactura(RepositorioFactura repositorioFactura, DtoAlquiler dtoAlquiler) {
+    public ServicioCrearFactura(
+            RepositorioFactura repositorioFactura,
+            DtoAlquiler dtoAlquiler,
+            DaoAlquiler daoAlquiler
+    ) {
         this.repositorioFactura = repositorioFactura;
         this.dtoAlquiler = dtoAlquiler;
+        this.daoAlquiler = daoAlquiler;
     }
 
     public Long ejecutar(Factura factura){
+        //adsd
         return repositorioFactura.crear(factura);
     };
 
-    private Double calcularValorAlquilerPorDias(DtoAlquiler alquiler){
-        return alquiler.getCantidadDiasAlquiler()*VALOR_DIA_DE_ALQUILER;
+    private Double calcularValorAlquilerPorDias(){
+        Alquiler alquiler = daoAlquiler.buscarPorId();
+        return ;
     }
 
 }
