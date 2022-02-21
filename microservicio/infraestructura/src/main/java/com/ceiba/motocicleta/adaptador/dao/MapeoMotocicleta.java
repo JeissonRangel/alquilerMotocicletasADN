@@ -13,7 +13,7 @@ public class MapeoMotocicleta implements RowMapper<DtoMotocicleta>, MapperResult
     public DtoMotocicleta mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Long id = resultSet.getLong("id");
         Double valorMotocicleta = resultSet.getDouble("valorMotocicleta");
-        String anioModelo = resultSet.getString("anioModelo");
+        int anioModelo = resultSet.getInt("anioModelo");
         Boolean disponible = resultSet.getBoolean("disponible");
         return new DtoMotocicleta(id,valorMotocicleta,anioModelo,disponible);
     }
