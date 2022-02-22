@@ -11,6 +11,6 @@ public class ServicioEliminarMotocicleta {
     }
 
     public void ejecutar(Long id){
-        this.repositorioMotocicleta
+        this.repositorioMotocicleta.eliminar(id);
     }
 }
