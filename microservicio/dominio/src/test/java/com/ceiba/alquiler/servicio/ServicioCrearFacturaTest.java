@@ -40,7 +40,6 @@ public class ServicioCrearFacturaTest {
     @Mock
     private DaoAlquiler daoAlquiler;
 
-    @Mock
     private DtoAlquiler dtoAlquiler = new DtoAlquilerTestDataBuilder().build();
 
     @Mock
@@ -63,13 +62,13 @@ public class ServicioCrearFacturaTest {
     @Test
     void calcularFacturaSalirCiudadConParrillero(){
 
+        Mockito.doReturn(dtoAlquiler).when(daoAlquiler).buscarPorId(1L);
         Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarPorId(1L);
-        Mockito.doReturn(1L).when(dtoAlquiler).getMotocicletaId();
         int diferenciaAnios = anioActual - motocicleta.getAnioModelo();
         Boolean parrillero = alquiler.getPlaneaLlevarParrillero();
         int diasAlquiler = alquiler.getCantidadDiasAlquiler();
         Double valorMotocicleta = motocicleta.getValorMotocicleta();
-        Double seguroVehiculo = (valorMotocicleta*0.3F)+(valorMotocicleta*PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO*diferenciaAnios);
+        Double seguroVehiculo = (valorMotocicleta*PORCENTAJE_POLIZA_VEHICULO)+(valorMotocicleta*PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO*diferenciaAnios);
         Double polizaPersona = calcularConceptoPolizaPersonal(parrillero,diasAlquiler);
         Double valorDiasAlquilados = calcularValorPorDiasAlquilados(diasAlquiler);
 

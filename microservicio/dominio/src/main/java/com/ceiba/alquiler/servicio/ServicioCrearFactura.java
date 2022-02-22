@@ -37,7 +37,8 @@ public class ServicioCrearFactura {
         Long idAlquiler = factura.getIdAlquiler();
         LocalDate fechaCompra = LocalDate.now();
         DtoAlquiler alquilerFactura = buscarAlquilerPorId(idAlquiler);
-        DtoMotocicleta motocicleta = buscarMotocicletaPorId(alquilerFactura.getMotocicletaId());
+        Long idMotocicleta = alquilerFactura.getMotocicletaId();
+        DtoMotocicleta motocicleta = buscarMotocicletaPorId(idMotocicleta);
         int diasAlquiler = alquilerFactura.getCantidadDiasAlquiler();
 
         if (alquilerFactura.isPlaneaSalirDeLaCiudad()){
