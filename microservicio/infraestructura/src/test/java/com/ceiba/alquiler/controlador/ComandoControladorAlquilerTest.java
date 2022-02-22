@@ -14,9 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ComandoControladorAlquiler.class)
@@ -39,5 +39,33 @@ public class ComandoControladorAlquilerTest {
                 .content(objectMapper.writeValueAsString(comandoAlquiler)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor':1}"));
+    }
+
+    @Test
+    @DisplayName("Deberia actualizar un alquiler")
+    void deberiaActualizarAlquiler() throws Exception{
+        Long id = 1L;
+        ComandoAlquiler comandoAlquiler = new ComandoAlquilerTestDataBuilder().build();
+
+        mockMvc.perform(put("/alquiler/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoAlquiler)))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Deberia eliminar el alquiler")
+    void deberiaEliminarAlquiler() throws Exception{
+        Long id = 1L;
+
+        mockMvc.perform(delete("/alquiler/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        //mockMvc.perform(get("/alquiler")
+        //        .contentType(MediaType.APPLICATION_JSON))
+        //        .andExpect(status().isOk())
+        //        .andExpect(jsonPath("$",hasSize(0)));
     }
 }
