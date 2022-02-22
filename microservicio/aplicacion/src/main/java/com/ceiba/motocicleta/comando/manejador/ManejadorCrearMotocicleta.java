@@ -19,7 +19,7 @@ public class ManejadorCrearMotocicleta implements ManejadorComandoRespuesta<Coma
     }
 
     public ComandoRespuesta<Long> ejecutar(ComandoMotocicleta comandoMotocicleta){
-        Motocicleta motocicleta = new FabricaMotocicleta().crear(comandoMotocicleta);
+        Motocicleta motocicleta = this.fabricaMotocicleta.crear(comandoMotocicleta);
         return new ComandoRespuesta<>(this.servicioCrearMotocicleta.ejecutar(motocicleta));
     }
 }

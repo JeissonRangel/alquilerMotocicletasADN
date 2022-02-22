@@ -56,8 +56,8 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
 
     @Override
     public Boolean validarDisponibilidad() {
-        int CANTIDAD_DE_DISPONIBLES = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlValidarDisponibilidad, new MapeoMotocicleta()).size();
-        return CANTIDAD_DE_DISPONIBLES > 0;
+        int numeroMotocicletasDisponibles = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlValidarDisponibilidad, new MapeoMotocicleta()).size();
+        return numeroMotocicletasDisponibles > 0;
     }
 
     @Override

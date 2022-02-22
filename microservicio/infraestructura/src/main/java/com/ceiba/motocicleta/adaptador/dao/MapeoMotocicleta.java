@@ -12,6 +12,7 @@ public class MapeoMotocicleta implements RowMapper<DtoMotocicleta>, MapperResult
     @Override
     public DtoMotocicleta mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Long id = resultSet.getLong("id");
+        String nombre = resultSet.getString("nombre");
         Double valorMotocicleta = resultSet.getDouble("valorMotocicleta");
         int anioModelo = resultSet.getInt("anioModelo");
         Boolean disponible = resultSet.getBoolean("disponible");
