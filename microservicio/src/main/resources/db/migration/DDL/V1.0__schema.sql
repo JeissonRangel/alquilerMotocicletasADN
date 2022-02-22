@@ -8,6 +8,7 @@ create table usuario (
 
 create table motocicleta (
  id int(10) not null auto_increment,
+ nombre varchar(20),
  valorMotocicleta DOUBLE,
  anioModelo varchar(4),
  disponible BOOLEAN,
