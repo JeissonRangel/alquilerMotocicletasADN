@@ -27,8 +27,6 @@ public class ServicioCrearMotocicletaTest {
 
     private static final String DEBE_INGRESA_NOMBRE_MOTOCICLETA = "Debe ingresar el nombre de la motocicleta";
     private static final String LONGITUD_DE_NOMBRE_DEBE_SER_MINIMO = "El nombre de la motocicleta debe tener al menos 4 letras";
-    private static final String VALOR_MOTOCICLETA_NO_PERMITIDO = "Ingrese un valor de motocicleta valido";
-    private static final String DEBE_INGRESAR_ANIO_MODELO_VALIDO = "Debe ingresar un año de modelo valido";
 
     @Test
     @DisplayName("Deberia lanzar una excepcion si no se ingresa un nombre de motocicleta")
