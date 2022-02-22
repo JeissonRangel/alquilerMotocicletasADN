@@ -18,8 +18,8 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
     @SqlStatement(namespace = "motocicleta", value = "listar")
     private static String sqlListar;
 
-    @SqlStatement(namespace = "motocicleta", value = "buscaId")
-    private static String sqlBuscarId;
+    @SqlStatement(namespace = "motocicleta", value = "buscaPorId")
+    private static String sqlBuscarPorId;
 
     @SqlStatement(namespace = "motocicleta", value = "buscaMotocicletaDisponible")
     private static String sqlBuscaDisponible;
@@ -44,7 +44,7 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
     public DtoMotocicleta buscarPorId(Long id) {
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("id", id);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarId, parametros, new MapeoMotocicleta());
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarPorId, parametros, new MapeoMotocicleta());
     }
 
     @Override

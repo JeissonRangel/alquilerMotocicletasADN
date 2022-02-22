@@ -67,16 +67,17 @@ public class ServicioCrearAlquilerTest {
     @DisplayName("Deberia calcular la fecha de devolucion de un alquiler")
     void deberiaCalcularLaFechaDevolucionDelAlquiler(){
         int cantidadDiasAlquiler = alquiler.getCantidadDiasAlquiler();
+        System.out.println(cantidadDiasAlquiler);
         Mockito.doReturn(true).when(daoMotocicleta).validarDisponibilidad();
         Mockito.doReturn(1L).when(motocicleta).getId();
         Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarDisponible();
         Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
 
-        FECHA_ACTUAL.plusDays(cantidadDiasAlquiler);
+        LocalDate fechaDevolucion = FECHA_ACTUAL.plusDays(cantidadDiasAlquiler);
 
         servicioCrearAlquiler.ejecutar(alquiler);
 
-        assertEquals(FECHA_ACTUAL,alquiler.getFechaDevolucion());
+        assertEquals(fechaDevolucion,alquiler.getFechaDevolucion());
     }
 
     @Test

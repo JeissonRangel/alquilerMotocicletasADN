@@ -2,7 +2,9 @@ package com.ceiba.motocicleta.comando.manejador;
 
 import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.motocicleta.servicio.ServicioEliminarMotocicleta;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ManejadorEliminarMotocicleta implements ManejadorComando<Long> {
     private final ServicioEliminarMotocicleta servicioEliminarMotocicleta;
 

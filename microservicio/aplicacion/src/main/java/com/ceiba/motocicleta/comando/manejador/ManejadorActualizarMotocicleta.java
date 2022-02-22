@@ -5,7 +5,9 @@ import com.ceiba.motocicleta.comando.ComandoMotocicleta;
 import com.ceiba.motocicleta.comando.fabrica.FabricaMotocicleta;
 import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.servicio.ServicioActualizarMotocicleta;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ManejadorActualizarMotocicleta implements ManejadorComando<ComandoMotocicleta> {
 
     private final FabricaMotocicleta fabricaMotocicleta;

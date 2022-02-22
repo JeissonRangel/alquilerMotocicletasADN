@@ -26,3 +26,8 @@ create table alquiler (
  foreign key (motocicletaID) references Motocicleta(id)
 );
 
+create table factura (
+ id int(10) not null auto_increment,
+
+);
+

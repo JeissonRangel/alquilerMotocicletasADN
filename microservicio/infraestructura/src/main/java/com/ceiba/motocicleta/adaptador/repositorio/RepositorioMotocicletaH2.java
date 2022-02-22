@@ -23,9 +23,6 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
     @SqlStatement(namespace = "motocicleta", value = "actualizarDisponibilidadPorId")
     private static String sqlActualizarDisponibilidadPorId;
 
-    @SqlStatement(namespace = "motocicleta",value = "existePorId")
-    private static String sqlExistePorId;
-
     @SqlStatement(namespace = "motocicleta",value = "eliminar")
     private static String sqlEliminar;
 
