@@ -33,6 +33,7 @@ public class AlquilerTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar si no hay una identificacion de persona")
     void deberiaFallarSinIdentificacionDePersona(){
         AlquilerTestDataBuilder alquilerTestDataBuilder = new AlquilerTestDataBuilder().conId(1L).sinPersonaId();
         BasePrueba.assertThrows(() -> {
@@ -41,6 +42,7 @@ public class AlquilerTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar si no hay un id de motocicleta")
     void deberiaFallarSinMotocicletaId(){
         AlquilerTestDataBuilder alquilerTestDataBuilder = new AlquilerTestDataBuilder().conId(1L).sinMotocicletaId();
         BasePrueba.assertThrows(()->{
@@ -49,6 +51,7 @@ public class AlquilerTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar si la cantidad de dias alquilados es igual o menor a cero")
     void deberiaFallarSiCantidadDiasAlquilerCero(){
         AlquilerTestDataBuilder alquilerTestDataBuilder = new AlquilerTestDataBuilder().conId(1L).conCantidadDiasAlquilerCero();
         BasePrueba.assertThrows(()->{

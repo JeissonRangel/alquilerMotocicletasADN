@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ComandoMotocicleta {
     private Long id;
+    private String nombre;
     private Double valorMotocicleta;
     private int anioModelo;
     private Boolean disponible;

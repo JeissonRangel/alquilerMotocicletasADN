@@ -1,2 +1,2 @@
-select id, valorMotocicleta, anioModelo, disponible
+select id, nombre, valorMotocicleta, anioModelo, disponible
 from motocicleta;

@@ -1,3 +1,3 @@
-select top 1 id, valorMotocicleta, anioModelo, disponible
+select top 1 id, nombre, valorMotocicleta, anioModelo, disponible
 from motocicleta
 where disponible = :disponible;

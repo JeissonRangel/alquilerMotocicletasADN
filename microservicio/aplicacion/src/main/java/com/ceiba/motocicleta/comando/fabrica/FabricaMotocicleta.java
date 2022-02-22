@@ -9,6 +9,7 @@ public class FabricaMotocicleta {
     public Motocicleta crear(ComandoMotocicleta comandoMotocicleta){
         return new Motocicleta(
                 comandoMotocicleta.getId(),
+                comandoMotocicleta.getNombre(),
                 comandoMotocicleta.getValorMotocicleta(),
                 comandoMotocicleta.getAnioModelo(),
                 comandoMotocicleta.getDisponible());

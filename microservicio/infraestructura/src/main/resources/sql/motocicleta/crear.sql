@@ -1,2 +1,2 @@
-insert into motocicleta (id,valorMotocicleta,anioModelo,disponible)
-values (:id,:valorMotocicleta,:anioModelo,:disponible);
+insert into motocicleta (id,nombre,valorMotocicleta,anioModelo,disponible)
+values (:id,:nombre,:valorMotocicleta,:anioModelo,:disponible);
