@@ -29,7 +29,7 @@ public class ComandoControladorAlquiler {
 
     @PostMapping
     public ComandoRespuesta<Long> crear(@RequestBody ComandoAlquiler comandoAlquiler){
-        return manejadorCrearAlquiler.ejecutar(comandoAlquiler);
+        return this.manejadorCrearAlquiler.ejecutar(comandoAlquiler);
     }
 
     @PutMapping(value = "/{id}")
