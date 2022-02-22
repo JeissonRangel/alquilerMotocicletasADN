@@ -41,13 +41,11 @@ public class ServicioCrearAlquilerTest {
     @InjectMocks
     private ServicioCrearAlquiler servicioCrearAlquiler;
 
-    @InjectMocks
     private Alquiler alquiler = new AlquilerTestDataBuilder().build();
 
     @Mock
     private Motocicleta motocicleta;
 
-    @InjectMocks
     private LocalDate FECHA_ACTUAL = LocalDate.now();
 
     @Test

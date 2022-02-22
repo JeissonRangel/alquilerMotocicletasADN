@@ -10,7 +10,6 @@ import static  com.ceiba.dominio.ValidadorArgumento.*;
 @Getter
 @Setter
 public class Factura {
-    private static final String DEBE_INGRESAR_UN_ID_ALQUILER = "Debe ingresar un id de alquiler";
 
     private Long id;
     private Long idAlquiler;
@@ -27,8 +26,6 @@ public class Factura {
             Double polizaPersonal,
             LocalDate fechaCompra
     ) {
-        validarObligatorio(idAlquiler,DEBE_INGRESAR_UN_ID_ALQUILER);
-
         this.id = id;
         this.idAlquiler = idAlquiler;
         this.valorTotal = valorTotal;

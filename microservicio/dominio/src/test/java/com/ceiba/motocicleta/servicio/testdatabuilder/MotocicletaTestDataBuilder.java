@@ -12,8 +12,8 @@ public class MotocicletaTestDataBuilder {
     public MotocicletaTestDataBuilder() {
         this.id = 1L;
         this.nombre = "YAMAHA R1M";
-        this.valorMotocicleta = 10000000D;
-        this.anioModelo = 2001;
+        this.valorMotocicleta = 1000D;
+        this.anioModelo = 2020;
         this.disponible = true;
     }
 

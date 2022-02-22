@@ -34,9 +34,10 @@ public class ServicioCrearFactura {
 
     public Long ejecutar(Factura factura){
 
+        Long idAlquiler = factura.getIdAlquiler();
         LocalDate fechaCompra = LocalDate.now();
-        DtoAlquiler alquilerFactura = buscarAlquilerPorId(factura);
-        DtoMotocicleta motocicleta = buscarMotocicletaPorId(alquilerFactura);
+        DtoAlquiler alquilerFactura = buscarAlquilerPorId(idAlquiler);
+        DtoMotocicleta motocicleta = buscarMotocicletaPorId(alquilerFactura.getMotocicletaId());
         int diasAlquiler = alquilerFactura.getCantidadDiasAlquiler();
 
         if (alquilerFactura.isPlaneaSalirDeLaCiudad()){
@@ -56,12 +57,12 @@ public class ServicioCrearFactura {
         return repositorioFactura.crear(factura);
     };
 
-    private DtoAlquiler buscarAlquilerPorId(Factura factura){
-        return this.daoAlquiler.buscarPorId(factura.getIdAlquiler());
+    private DtoAlquiler buscarAlquilerPorId(Long idAlquiler){
+        return this.daoAlquiler.buscarPorId(idAlquiler);
     }
 
-    private DtoMotocicleta buscarMotocicletaPorId(DtoAlquiler alquiler){
-        return this.daoMotocicleta.buscarPorId(alquiler.getMotocicletaId());
+    private DtoMotocicleta buscarMotocicletaPorId(Long idMotocicleta){
+        return this.daoMotocicleta.buscarPorId(idMotocicleta);
     }
 
     private Double calcularValorAlquilerPorDias(int diasAlquiler){
@@ -94,7 +95,7 @@ public class ServicioCrearFactura {
 
         Double valorVehiculo = motocicleta.getValorMotocicleta();
 
-        int diferenciaAnios= anioActual - motocicleta.getAnioModelo();
+        int diferenciaAnios = anioActual - motocicleta.getAnioModelo();
 
         Double valorConceptoPorAnioModelo = (valorVehiculo * PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO) * diferenciaAnios;
 

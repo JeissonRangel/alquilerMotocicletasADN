@@ -39,6 +39,12 @@ public class AlquilerTestDataBuilder {
         this.motocicletaID = null;
         return this;
     }
+
+    public AlquilerTestDataBuilder conCantidadDiasAlquiler(int cantidadDiasAlquiler){
+        this.cantidadDiasAlquiler = cantidadDiasAlquiler;
+        return this;
+    }
+
     public AlquilerTestDataBuilder conCantidadDiasAlquilerCero(){
         this.cantidadDiasAlquiler=0;
         return this;
