@@ -18,7 +18,7 @@ public class ServicioActualizarMotocicleta {
 
     public void ejecutar(Motocicleta motocicleta){
         validarExistenciaMotocicleta(motocicleta);
-        this.repositorioMotocicleta.crear(motocicleta);
+        this.repositorioMotocicleta.actualizar(motocicleta);
     }
 
     private void validarExistenciaMotocicleta(Motocicleta motocicleta){
