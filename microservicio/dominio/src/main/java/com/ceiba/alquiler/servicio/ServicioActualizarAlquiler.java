@@ -20,11 +20,11 @@ public class ServicioActualizarAlquiler {
     }
 
     public void ejecutar(Alquiler alquiler){
-        validarExistenciaPrecia(alquiler);
+        validarExistenciaPrevia(alquiler);
         this.repositorioAlquiler.actualizar(alquiler);
     }
 
-    private void validarExistenciaPrecia(Alquiler alquiler){
+    private void validarExistenciaPrevia(Alquiler alquiler){
         Boolean existe = this.daoAlquiler.existePorId(alquiler.getId());
         if (!existe){
             throw new ExcepcionDuplicidad(EL_ALQUILER_NO_EXISTE);

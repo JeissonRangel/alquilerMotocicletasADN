@@ -9,4 +9,5 @@ public interface DaoMotocicleta {
     DtoMotocicleta buscarPorId(Long id);
     DtoMotocicleta buscarDisponible();
     Boolean validarDisponibilidad();
+    Boolean existe(Long id);
 }
