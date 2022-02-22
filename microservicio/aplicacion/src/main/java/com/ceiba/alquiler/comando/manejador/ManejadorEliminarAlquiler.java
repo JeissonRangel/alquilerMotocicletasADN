@@ -5,7 +5,7 @@ import com.ceiba.manejador.ManejadorComando;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ManejadorEliminarAlquiler implements ManejadorComando<Long> {
+public class ManejadorEliminarAlquiler implements ManejadorComando<Long>{
 
     private final ServicioEliminarAlquiler servicioEliminarAlquiler;
 

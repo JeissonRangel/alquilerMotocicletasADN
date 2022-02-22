@@ -32,6 +32,7 @@ public class ComandoControladorMotocicletaTest {
     @Test
     @DisplayName("Deberia crear una motocicleta")
     void deberiaCrearUnaMotocicleta() throws Exception{
+
         ComandoMotocicleta comandoMotocicleta = new ComandoMotocicletaTestDataBuilder().conId(2L).build();
 
         mockMvc.perform(post("/motocicleta")
@@ -42,10 +43,10 @@ public class ComandoControladorMotocicletaTest {
     }
 
     @Test
-    @DisplayName("Deberia actualizar un alquiler")
-    void deberiaActualizarAlquiler() throws Exception{
+    @DisplayName("Deberia actualizar una motocicleta")
+    void deberiaActualizarMotocicleta() throws Exception{
         Long id = 1L;
-        ComandoMotocicleta comandoMotocicleta = new ComandoMotocicletaTestDataBuilder().conAnioModelo(2021).conId(id).build();
+        ComandoMotocicleta comandoMotocicleta = new ComandoMotocicletaTestDataBuilder().build();
 
         mockMvc.perform( put("/motocicleta/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -54,7 +55,7 @@ public class ComandoControladorMotocicletaTest {
     }
 
     @Test
-    @DisplayName("Deberia eliminar el motocicleta")
+    @DisplayName("Deberia eliminar la motocicleta")
     void deberiaEliminarMotocicleta() throws Exception{
         Long id = 1L;
 
@@ -63,10 +64,6 @@ public class ComandoControladorMotocicletaTest {
                .accept(MediaType.APPLICATION_JSON))
                .andExpect(status().isOk());
 
-        mockMvc.perform(get("/motocicleta")
-               .contentType(MediaType.APPLICATION_JSON))
-               .andExpect(status().isOk())
-               .andExpect(jsonPath("$",hasSize(0)));
     }
 
 }
