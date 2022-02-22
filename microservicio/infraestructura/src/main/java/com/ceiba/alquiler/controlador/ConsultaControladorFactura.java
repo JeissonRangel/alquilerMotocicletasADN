@@ -1,7 +1,7 @@
 package com.ceiba.alquiler.controlador;
 
 import com.ceiba.alquiler.consulta.ManejadorListarFacturas;
-import com.ceiba.alquiler.modelo.dto.DtoAlquiler;
+import com.ceiba.alquiler.modelo.dto.DtoFactura;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class ConsultaControladorFactura {
     }
 
     @GetMapping
-    public List<DtoAlquiler> listar(){
+    public List<DtoFactura> listar(){
         return this.manejadorListarFacturas.ejecutar();
     }
 }
