@@ -5,4 +5,5 @@ import com.ceiba.alquiler.modelo.entidad.Alquiler;
 public interface RepositorioAlquiler {
     Long crear(Alquiler alquiler);
     void actualizar(Alquiler alquiler);
+    void eliminar(Long id);
 }

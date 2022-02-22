@@ -26,6 +26,9 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
     @SqlStatement(namespace = "motocicleta",value = "existePorId")
     private static String sqlExistePorId;
 
+    @SqlStatement(namespace = "motocicleta",value = "eliminar")
+    private static String sqlEliminar;
+
     public RepositorioMotocicletaH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -46,6 +49,13 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
         parametros.put("id",id);
         parametros.put("disponible",disponible);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarDisponibilidadPorId,parametros);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("id",id);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros)
     }
 
 }

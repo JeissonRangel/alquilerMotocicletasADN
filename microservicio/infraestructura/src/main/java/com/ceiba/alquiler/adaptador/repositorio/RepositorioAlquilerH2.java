@@ -6,6 +6,9 @@ import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Repository
 public class RepositorioAlquilerH2 implements RepositorioAlquiler {
 
@@ -16,6 +19,9 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
 
     @SqlStatement(namespace="alquiler",value = "actualizar")
     private static String sqlActualizar;
+
+    @SqlStatement(namespace = "alquiler",value = "eliminar")
+    private static String sqlEliminar;
 
     public RepositorioAlquilerH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -29,5 +35,12 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
     @Override
     public void actualizar(Alquiler alquiler) {
         this.customNamedParameterJdbcTemplate.actualizar(alquiler,sqlActualizar);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("id",id);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros);
     }
 }

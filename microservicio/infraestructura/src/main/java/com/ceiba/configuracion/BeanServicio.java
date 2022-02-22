@@ -4,9 +4,12 @@ import com.ceiba.alquiler.puerto.dao.DaoAlquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.alquiler.servicio.ServicioActualizarAlquiler;
 import com.ceiba.alquiler.servicio.ServicioCrearAlquiler;
+import com.ceiba.alquiler.servicio.ServicioEliminarAlquiler;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
+import com.ceiba.motocicleta.servicio.ServicioActualizarMotocicleta;
 import com.ceiba.motocicleta.servicio.ServicioCrearMotocicleta;
+import com.ceiba.motocicleta.servicio.ServicioEliminarMotocicleta;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
@@ -28,9 +31,25 @@ public class BeanServicio {
     }
 
     @Bean
+    public ServicioEliminarAlquiler servicioEliminarAlquiler(RepositorioAlquiler repositorioAlquiler){
+        return new ServicioEliminarAlquiler(repositorioAlquiler);
+    }
+
+    @Bean
     public ServicioCrearMotocicleta servicioCrearMotocicleta(RepositorioMotocicleta repositorioMotocicleta){
         return new ServicioCrearMotocicleta(repositorioMotocicleta);
     }
+
+    @Bean
+    public ServicioActualizarMotocicleta servicioActualizarMotocicleta(RepositorioMotocicleta repositorioMotocicleta, DaoMotocicleta daoMotocicleta){
+        return new ServicioActualizarMotocicleta(repositorioMotocicleta, daoMotocicleta);
+    }
+
+    @Bean
+    public ServicioEliminarMotocicleta servicioEliminarMotocicleta(RepositorioMotocicleta repositorioMotocicleta){
+        return new ServicioEliminarMotocicleta(repositorioMotocicleta);
+    }
+
     @Bean
     public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioCrearUsuario(repositorioUsuario);

@@ -6,4 +6,5 @@ public interface RepositorioMotocicleta {
     Long crear(Motocicleta motocicleta);
     void actualizar(Motocicleta motocicleta);
     void actualizarDisponibilidadPorId(Long id, Boolean disponible);
+    void eliminar(Long id);
 }
