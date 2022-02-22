@@ -2,9 +2,11 @@ package com.ceiba.alquiler.adaptador.dao;
 
 import com.ceiba.alquiler.modelo.dto.DtoFactura;
 import com.ceiba.alquiler.puerto.dao.DaoFactura;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class DaoFacturaH2 implements DaoFactura {
     @Override
     public List<DtoFactura> listar() {

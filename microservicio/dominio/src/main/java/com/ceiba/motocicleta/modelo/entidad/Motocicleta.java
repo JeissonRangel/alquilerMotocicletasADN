@@ -25,7 +25,6 @@ public class Motocicleta {
         validarLongitud(nombre,LONGITUD_MINIMA_NOMBRE, LONGITUD_DE_NOMBRE_DEBE_SER_MINIMO);
         validarPositivo(valorMotocicleta, VALOR_MOTOCICLETA_NO_PERMITIDO);
         validarPositivo((double) anioModelo,DEBE_INGRESAR_ANIO_MODELO_VALIDO);
-        System.out.println((double)anioModelo);
         this.id = id;
         this.nombre = nombre;
         this.valorMotocicleta = valorMotocicleta;

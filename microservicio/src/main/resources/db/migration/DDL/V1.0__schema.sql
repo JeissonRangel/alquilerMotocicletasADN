@@ -18,7 +18,7 @@ create table motocicleta (
 create table alquiler (
  id int(10) not null auto_increment,
  personaId int(10) not null,
- motocicletaID int(20) not null,
+ motocicletaId int(20) not null,
  cantidadDiasAlquiler int(2) not null,
  fechaDevolucion datetime null,
  planeaSalirDeLaCiudad BOOLEAN,

@@ -24,7 +24,7 @@ public class AlquilerTest {
 
         assertEquals(1,alquiler.getId());
         assertEquals(1,alquiler.getPersonaId());
-        assertEquals(1,alquiler.getMotocicletaID());
+        assertEquals(1,alquiler.getMotocicletaId());
         assertEquals(10,alquiler.getCantidadDiasAlquiler());
         assertEquals(null,alquiler.getFechaDevolucion());
         assertEquals(true,alquiler.getPlaneaSalirDeLaCiudad());

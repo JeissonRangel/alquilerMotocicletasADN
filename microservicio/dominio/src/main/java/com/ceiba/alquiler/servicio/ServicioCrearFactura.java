@@ -8,37 +8,33 @@ import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 
 public class ServicioCrearFactura {
     private static final double VALOR_DIA_DE_ALQUILER = 20000;
     private static final float PORCENTAJE_POLIZA_VEHICULO = 0.3F;
-    private static final float PORCENTAJE_POR_ANIO_POLIZA_VEHICULO = 0.03F;
+    private static final float PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO = 0.03F;
     private static final float PORCENTAJE_POLIZA_SIN_PARRILLERO = 0.12F;
     private static final float PORCENTAJE_POLIZA_CON_PARRILLERO = 0.24F;
 
     private final RepositorioFactura repositorioFactura;
-    private final DtoAlquiler dtoAlquiler;
     private final DaoAlquiler daoAlquiler;
     private final DaoMotocicleta daoMotocicleta;
 
-    private HashMap<String, Double> conceptos = new HashMap<>();
-    private int anioActual = LocalDate.now().getYear();
+    private final int anioActual = LocalDate.now().getYear();
 
     public ServicioCrearFactura(
             RepositorioFactura repositorioFactura,
-            DtoAlquiler dtoAlquiler,
             DaoAlquiler daoAlquiler,
             DaoMotocicleta daoMotocicleta
     ) {
         this.repositorioFactura = repositorioFactura;
-        this.dtoAlquiler = dtoAlquiler;
         this.daoAlquiler = daoAlquiler;
         this.daoMotocicleta = daoMotocicleta;
     }
 
     public Long ejecutar(Factura factura){
 
+        LocalDate fechaCompra = LocalDate.now();
         DtoAlquiler alquilerFactura = buscarAlquilerPorId(factura);
         DtoMotocicleta motocicleta = buscarMotocicletaPorId(alquilerFactura);
         int diasAlquiler = alquilerFactura.getCantidadDiasAlquiler();
@@ -55,23 +51,17 @@ public class ServicioCrearFactura {
 
         factura.setValorTotal(sumatoriaConceptos);
 
+        factura.setFechaCompra(fechaCompra);
+
         return repositorioFactura.crear(factura);
     };
-
-    private Double calcularValorConceptos(){
-        Double total=0.0;
-        for (Double valor: conceptos.values()) {
-            total+=valor;
-        }
-        return total;
-    }
 
     private DtoAlquiler buscarAlquilerPorId(Factura factura){
         return this.daoAlquiler.buscarPorId(factura.getIdAlquiler());
     }
 
     private DtoMotocicleta buscarMotocicletaPorId(DtoAlquiler alquiler){
-        return this.daoMotocicleta.buscarPorId(alquiler.getMotocicletaID());
+        return this.daoMotocicleta.buscarPorId(alquiler.getMotocicletaId());
     }
 
     private Double calcularValorAlquilerPorDias(int diasAlquiler){
@@ -106,9 +96,9 @@ public class ServicioCrearFactura {
 
         int diferenciaAnios= anioActual - motocicleta.getAnioModelo();
 
-        Double valorConceptoPorAnioModelo = valorVehiculo*diferenciaAnios*PORCENTAJE_POR_ANIO_POLIZA_VEHICULO;
+        Double valorConceptoPorAnioModelo = (valorVehiculo * PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO) * diferenciaAnios;
 
-        valorConcepto = (valorVehiculo*PORCENTAJE_POLIZA_VEHICULO)+valorConceptoPorAnioModelo;
+        valorConcepto = (valorVehiculo * PORCENTAJE_POLIZA_VEHICULO) + valorConceptoPorAnioModelo;
 
         return valorConcepto;
     }

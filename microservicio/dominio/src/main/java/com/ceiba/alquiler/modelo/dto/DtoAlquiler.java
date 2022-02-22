@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class DtoAlquiler {
     private Long id;
     private Long personaId;
-    private Long motocicletaID;
+    private Long motocicletaId;
     private int cantidadDiasAlquiler;
     private LocalDate fechaDevolucion;
     private boolean planeaSalirDeLaCiudad;
