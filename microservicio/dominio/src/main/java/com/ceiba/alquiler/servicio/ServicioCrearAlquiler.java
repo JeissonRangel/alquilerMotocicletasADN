@@ -55,8 +55,8 @@ public class ServicioCrearAlquiler {
 
     private void calcularFechaDevolucion(Alquiler alquiler){
         int diasASumar = alquiler.getCantidadDiasAlquiler();
-        LocalDate fechaDevolucion = this.fechaDevolucion.plusDays(diasASumar);
-        alquiler.setFechaDevolucion(fechaDevolucion);
+        LocalDate fechaDevolucionCalculada = this.fechaDevolucion.plusDays(diasASumar);
+        alquiler.setFechaDevolucion(fechaDevolucionCalculada);
     }
 
 }
