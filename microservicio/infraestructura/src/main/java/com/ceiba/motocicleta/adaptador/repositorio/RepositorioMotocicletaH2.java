@@ -55,7 +55,7 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
     public void eliminar(Long id) {
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("id",id);
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros)
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros);
     }
 
 }
