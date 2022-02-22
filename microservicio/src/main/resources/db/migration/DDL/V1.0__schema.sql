@@ -23,8 +23,7 @@ create table alquiler (
  fechaDevolucion datetime null,
  planeaSalirDeLaCiudad BOOLEAN,
  planeaLlevarParrillero BOOLEAN,
- primary key (id),
- foreign key (motocicletaID) references Motocicleta(id)
+ primary key (id)
 );
 
 create table factura (
@@ -34,7 +33,6 @@ create table factura (
  seguroVehiculo int(10) not null,
  polizaPersonal int(10) not null,
  fechaCompra datetime null,
- primary key (id),
- foreign key (idAlquiler) references Alquiler(id)
+ primary key (id)
 );
 

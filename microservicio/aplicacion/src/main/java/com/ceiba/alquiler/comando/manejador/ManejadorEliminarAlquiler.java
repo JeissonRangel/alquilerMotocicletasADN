@@ -1,19 +1,19 @@
 package com.ceiba.alquiler.comando.manejador;
 
+import com.ceiba.alquiler.servicio.ServicioEliminarAlquiler;
 import com.ceiba.manejador.ManejadorComando;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ManejadorEliminarAlquiler implements ManejadorComando<Long> {
 
-    private final ServicioEliminarUsuario servicioEliminarUsuario;
+    private final ServicioEliminarAlquiler servicioEliminarAlquiler;
 
-    public ManejadorEliminarAlquiler(ServicioEliminarUsuario servicioEliminarUsuario) {
-        this.servicioEliminarUsuario = servicioEliminarUsuario;
+    public ManejadorEliminarAlquiler(ServicioEliminarAlquiler servicioEliminarAlquiler) {
+        this.servicioEliminarAlquiler = servicioEliminarAlquiler;
     }
 
     public void ejecutar(Long idAlquiler){
-        this.servicioEliminarUsuario.ejecutar(idAlquiler);
+        this.servicioEliminarAlquiler.ejecutar(idAlquiler);
     }
 }

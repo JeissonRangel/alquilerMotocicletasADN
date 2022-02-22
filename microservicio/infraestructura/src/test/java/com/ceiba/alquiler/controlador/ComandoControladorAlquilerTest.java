@@ -38,7 +38,7 @@ public class ComandoControladorAlquilerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoAlquiler)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor':1}"));
+                .andExpect(content().json("{'valor':2}"));
     }
 
     @Test
@@ -63,9 +63,9 @@ public class ComandoControladorAlquilerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        //mockMvc.perform(get("/alquiler")
-        //        .contentType(MediaType.APPLICATION_JSON))
-        //        .andExpect(status().isOk())
-        //        .andExpect(jsonPath("$",hasSize(0)));
+        mockMvc.perform(get("/alquiler")
+               .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$",hasSize(0)));
     }
 }
