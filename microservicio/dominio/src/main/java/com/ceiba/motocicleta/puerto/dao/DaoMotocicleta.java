@@ -8,6 +8,4 @@ public interface DaoMotocicleta {
     List<DtoMotocicleta> listar();
     DtoMotocicleta buscarPorId(Long id);
     DtoMotocicleta buscarDisponible();
-    Boolean validarDisponibilidad();
-    Boolean existe(Long id);
 }

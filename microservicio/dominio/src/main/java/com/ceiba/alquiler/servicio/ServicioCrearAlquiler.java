@@ -34,16 +34,16 @@ public class ServicioCrearAlquiler {
     }
 
     private void validarDisponibilidadMotocicletas(){
-        Boolean motocicletasDisponibles = this.daoMotocicleta.validarDisponibilidad();
+        Boolean motocicletasDisponibles = this.repositorioMotocicleta.validarDisponibilidad();
         if (!motocicletasDisponibles)
             throw new ExcepcionNoMotocicletasDisponibles(NO_HAY_MOTOCICLETAS_DISPONIBLES);
     }
 
     private Long traerIdMotocicletaDisponible(){
         Boolean disponibilidadActualizada = false;
-        DtoMotocicleta motocicleta = this.daoMotocicleta.buscarDisponible();
-        actualizarDisponibilidadMotocicleta(motocicleta.getId(),disponibilidadActualizada);
-        return
+        Long motocicletaIdDisponible = this.daoMotocicleta.buscarDisponible().getId();
+        actualizarDisponibilidadMotocicleta(motocicletaIdDisponible,disponibilidadActualizada);
+        return motocicletaIdDisponible;
     }
 
     private void actualizarDisponibilidadMotocicleta(Long motocicletaId, Boolean disponible){

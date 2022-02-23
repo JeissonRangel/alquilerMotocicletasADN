@@ -14,13 +14,13 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="alquiler", value="crear")
+    @SqlStatement(namespace = "alquiler", value = "crear")
     private static String sqlCrear;
 
-    @SqlStatement(namespace="alquiler",value = "actualizar")
+    @SqlStatement(namespace = "alquiler", value = "actualizar")
     private static String sqlActualizar;
 
-    @SqlStatement(namespace = "alquiler",value = "eliminar")
+    @SqlStatement(namespace = "alquiler", value = "eliminar")
     private static String sqlEliminar;
 
     @SqlStatement(namespace = "alquiler", value = "existePorId")
@@ -37,20 +37,21 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
 
     @Override
     public void actualizar(Alquiler alquiler) {
-        this.customNamedParameterJdbcTemplate.actualizar(alquiler,sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(alquiler, sqlActualizar);
     }
 
     @Override
     public void eliminar(Long id) {
         Map<String, Object> parametros = new HashMap<>();
-        parametros.put("id",id);
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros);
+        parametros.put("id", id);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, parametros);
     }
 
     @Override
     public Boolean existePorId(Long id) {
         Map<String, Object> parametros = new HashMap<>();
-        parametros.put("id",id);
+        parametros.put("id", id);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,parametros,Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId, parametros, Boolean.class);
     }
+}

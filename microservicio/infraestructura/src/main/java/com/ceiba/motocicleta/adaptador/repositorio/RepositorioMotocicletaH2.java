@@ -2,6 +2,7 @@ package com.ceiba.motocicleta.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.motocicleta.adaptador.dao.MapeoMotocicleta;
 import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,12 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
 
     @SqlStatement(namespace = "motocicleta",value = "eliminar")
     private static String sqlEliminar;
+
+    @SqlStatement(namespace = "motocicleta", value = "validarDisponibilidad")
+    private static String sqlValidarDisponibilidad;
+
+    @SqlStatement(namespace = "motocicleta", value = "existe")
+    private static String sqlExiste;
 
     public RepositorioMotocicletaH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -53,6 +60,19 @@ public class RepositorioMotocicletaH2 implements RepositorioMotocicleta {
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("id",id);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros);
+    }
+
+    @Override
+    public Boolean validarDisponibilidad() {
+        int numeroMotocicletasDisponibles = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlValidarDisponibilidad, new MapeoMotocicleta()).size();
+        return numeroMotocicletasDisponibles > 0;
+    }
+
+    @Override
+    public Boolean existe(Long id) {
+        Map<String,Object> parametros = new HashMap<>();
+        parametros.put("id",id);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,parametros,Boolean.class);
     }
 
 }

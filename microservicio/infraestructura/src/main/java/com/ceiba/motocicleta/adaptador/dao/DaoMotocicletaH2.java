@@ -24,12 +24,6 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
     @SqlStatement(namespace = "motocicleta", value = "buscaMotocicletaDisponible")
     private static String sqlBuscaDisponible;
 
-    @SqlStatement(namespace = "motocicleta", value = "validarDisponibilidad")
-    private static String sqlValidarDisponibilidad;
-
-    @SqlStatement(namespace = "motocicleta", value = "existe")
-    private static String sqlExiste;
-
     public DaoMotocicletaH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -54,16 +48,4 @@ public class DaoMotocicletaH2 implements DaoMotocicleta {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscaDisponible, parametros,new MapeoMotocicleta());
     }
 
-    @Override
-    public Boolean validarDisponibilidad() {
-        int numeroMotocicletasDisponibles = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlValidarDisponibilidad, new MapeoMotocicleta()).size();
-        return numeroMotocicletasDisponibles > 0;
-    }
-
-    @Override
-    public Boolean existe(Long id) {
-        Map<String,Object> parametros = new HashMap<>();
-        parametros.put("id",id);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,parametros,Boolean.class);
-    }
 }
