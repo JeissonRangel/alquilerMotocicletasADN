@@ -49,8 +49,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioActualizarMotocicleta servicioActualizarMotocicleta(RepositorioMotocicleta repositorioMotocicleta, DaoMotocicleta daoMotocicleta){
-        return new ServicioActualizarMotocicleta(repositorioMotocicleta, daoMotocicleta);
+    public ServicioActualizarMotocicleta servicioActualizarMotocicleta(RepositorioMotocicleta repositorioMotocicleta){
+        return new ServicioActualizarMotocicleta(repositorioMotocicleta);
     }
 
     @Bean

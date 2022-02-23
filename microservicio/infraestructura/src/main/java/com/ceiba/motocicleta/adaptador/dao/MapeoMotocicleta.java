@@ -16,6 +16,6 @@ public class MapeoMotocicleta implements RowMapper<DtoMotocicleta>, MapperResult
         Double valorMotocicleta = resultSet.getDouble("valorMotocicleta");
         int anioModelo = resultSet.getInt("anioModelo");
         Boolean disponible = resultSet.getBoolean("disponible");
-        return new DtoMotocicleta(id,valorMotocicleta,anioModelo,disponible);
+        return new DtoMotocicleta(id,nombre,valorMotocicleta,anioModelo,disponible);
     }
 }

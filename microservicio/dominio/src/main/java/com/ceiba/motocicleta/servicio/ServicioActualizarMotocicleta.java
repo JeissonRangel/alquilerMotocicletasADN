@@ -9,11 +9,9 @@ public class ServicioActualizarMotocicleta {
 
     private static final String LA_MOTOCICLETA_NO_EXISTE = "Esta motocicleta no existe en el sismtema";
     private final RepositorioMotocicleta repositorioMotocicleta;
-    private final DaoMotocicleta daoMotocicleta;
 
-    public ServicioActualizarMotocicleta(RepositorioMotocicleta repositorioMotocicleta, DaoMotocicleta daoMotocicleta) {
+    public ServicioActualizarMotocicleta(RepositorioMotocicleta repositorioMotocicleta) {
         this.repositorioMotocicleta = repositorioMotocicleta;
-        this.daoMotocicleta = daoMotocicleta;
     }
 
     public void ejecutar(Motocicleta motocicleta){
@@ -22,7 +20,7 @@ public class ServicioActualizarMotocicleta {
     }
 
     private void validarExistenciaMotocicleta(Motocicleta motocicleta){
-        Boolean existe = this.daoMotocicleta.existe(motocicleta.getId());
+        Boolean existe = this.repositorioMotocicleta.existe(motocicleta.getId());
         if (!existe){
             throw new ExcepcionDuplicidad(LA_MOTOCICLETA_NO_EXISTE);
         }
