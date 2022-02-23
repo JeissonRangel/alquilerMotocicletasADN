@@ -21,9 +21,6 @@ public class DaoAlquilerH2 implements DaoAlquiler {
     @SqlStatement(namespace = "alquiler", value="buscaId")
     private static String sqlBuscarId;
 
-    @SqlStatement(namespace = "alquiler", value = "existePorId")
-    private static String sqlExistePorId;
-
     public DaoAlquilerH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -41,11 +38,5 @@ public class DaoAlquilerH2 implements DaoAlquiler {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarId,parametros, new MapeoAlquiler());
     }
 
-    @Override
-    public Boolean existePorId(Long id) {
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("id",id);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,parametros,Boolean.class);
-    }
 }

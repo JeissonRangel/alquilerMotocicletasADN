@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import static  com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
-@Setter
 public class Alquiler {
     private static final String DEBE_INGRESAR_UNA_IDENTIFICACION = "Debe ingresar una identificacion";
     private static final String DEBE_INGRESAR_UNA_CANTIDAD_DE_DIAS_VALIDA = "La cantidad de dias que ingreso no es valida";
@@ -16,6 +15,7 @@ public class Alquiler {
     private Long id;
     private Long personaId;
     private Long motocicletaId;
+    //Cambiar atributos a entidades
     private int cantidadDiasAlquiler;
     private LocalDate fechaDevolucion;
     private Boolean planeaSalirDeLaCiudad;

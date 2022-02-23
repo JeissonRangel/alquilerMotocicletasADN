@@ -36,7 +36,7 @@ public class ServicioActualizarAlquilerTest {
     @DisplayName("Deberia lanzar una excepcion si el alquiler no existe")
     void deberiaLanzarUnaExcepcionSiElAlquilerNoExiste(){
 
-        Mockito.doReturn(false).when(daoAlquiler).existePorId(Mockito.anyLong());
+        Mockito.doReturn(false).when(repositorioAlquiler).existePorId(Mockito.anyLong());
 
         BasePrueba.assertThrows(()-> servicioActualizarAlquiler.ejecutar(alquiler),
                 ExcepcionDuplicidad.class,
@@ -47,7 +47,7 @@ public class ServicioActualizarAlquilerTest {
     @DisplayName("Deberia actualizar el alquiler correctamente")
     void deberiaActualizarElAlquilerCorrectamente(){
 
-        Mockito.doReturn(true).when(daoAlquiler).existePorId(Mockito.anyLong());
+        Mockito.doReturn(true).when(repositorioAlquiler).existePorId(Mockito.anyLong());
 
         servicioActualizarAlquiler.ejecutar(alquiler);
 

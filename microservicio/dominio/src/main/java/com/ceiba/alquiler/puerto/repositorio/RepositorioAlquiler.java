@@ -6,4 +6,5 @@ public interface RepositorioAlquiler {
     Long crear(Alquiler alquiler);
     void actualizar(Alquiler alquiler);
     void eliminar(Long id);
+    Boolean existePorId(Long id);
 }

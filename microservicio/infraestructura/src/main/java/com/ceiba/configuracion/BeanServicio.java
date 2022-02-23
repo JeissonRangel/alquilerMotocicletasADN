@@ -30,7 +30,7 @@ public class BeanServicio {
 
     @Bean
     public ServicioActualizarAlquiler servicioActualizarAlquiler(RepositorioAlquiler repositorioAlquiler, DaoAlquiler daoAlquiler){
-        return new ServicioActualizarAlquiler(repositorioAlquiler,daoAlquiler);
+        return new ServicioActualizarAlquiler(repositorioAlquiler);
     }
 
     @Bean

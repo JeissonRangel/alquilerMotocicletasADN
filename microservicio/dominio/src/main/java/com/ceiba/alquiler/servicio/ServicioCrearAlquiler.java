@@ -16,8 +16,6 @@ public class ServicioCrearAlquiler {
     private final RepositorioMotocicleta repositorioMotocicleta;
     private final DaoMotocicleta daoMotocicleta;
 
-    private LocalDate fechaDevolucion = LocalDate.now();
-
     public ServicioCrearAlquiler(
             RepositorioAlquiler repositorioAlquiler,
             RepositorioMotocicleta repositorioMotocicleta,
@@ -30,8 +28,8 @@ public class ServicioCrearAlquiler {
 
     public Long ejecutar(Alquiler alquiler){
         validarDisponibilidadMotocicletas();
-        calcularFechaDevolucion(alquiler);
-        asignarMotocicletaDisponible(alquiler);
+        LocalDate fechaDevolucion = calcularFechaDevolucion(alquiler);
+        Long motocicletaId = traerIdMotocicletaDisponible();
         return this.repositorioAlquiler.crear(alquiler);
     }
 
@@ -41,21 +39,21 @@ public class ServicioCrearAlquiler {
             throw new ExcepcionNoMotocicletasDisponibles(NO_HAY_MOTOCICLETAS_DISPONIBLES);
     }
 
-    private void asignarMotocicletaDisponible(Alquiler alquiler){
+    private Long traerIdMotocicletaDisponible(){
         Boolean disponibilidadActualizada = false;
         DtoMotocicleta motocicleta = this.daoMotocicleta.buscarDisponible();
-        alquiler.setMotocicletaId(motocicleta.getId());
         actualizarDisponibilidadMotocicleta(motocicleta.getId(),disponibilidadActualizada);
+        return
     }
 
     private void actualizarDisponibilidadMotocicleta(Long motocicletaId, Boolean disponible){
         repositorioMotocicleta.actualizarDisponibilidadPorId(motocicletaId, disponible);
     }
 
-    private void calcularFechaDevolucion(Alquiler alquiler){
+    private LocalDate calcularFechaDevolucion(Alquiler alquiler){
         int diasASumar = alquiler.getCantidadDiasAlquiler();
-        LocalDate fechaDevolucionCalculada = this.fechaDevolucion.plusDays(diasASumar);
-        alquiler.setFechaDevolucion(fechaDevolucionCalculada);
+        LocalDate fechaDevolucionCalculada = LocalDate.now().plusDays(diasASumar);
+        return fechaDevolucionCalculada;
     }
 
 }

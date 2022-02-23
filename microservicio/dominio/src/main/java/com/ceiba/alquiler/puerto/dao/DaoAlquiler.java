@@ -7,5 +7,5 @@ import java.util.List;
 public interface DaoAlquiler {
     List<DtoAlquiler> listar();
     DtoAlquiler buscarPorId(Long id);
-    Boolean existePorId(Long id);
+
 }

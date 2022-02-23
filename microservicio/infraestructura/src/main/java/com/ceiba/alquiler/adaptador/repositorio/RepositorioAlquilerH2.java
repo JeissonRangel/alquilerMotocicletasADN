@@ -23,6 +23,9 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
     @SqlStatement(namespace = "alquiler",value = "eliminar")
     private static String sqlEliminar;
 
+    @SqlStatement(namespace = "alquiler", value = "existePorId")
+    private static String sqlExistePorId;
+
     public RepositorioAlquilerH2(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -43,4 +46,11 @@ public class RepositorioAlquilerH2 implements RepositorioAlquiler {
         parametros.put("id",id);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar,parametros);
     }
-}
+
+    @Override
+    public Boolean existePorId(Long id) {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("id",id);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,parametros,Boolean.class);
+    }

@@ -69,14 +69,16 @@ public class ServicioCrearFacturaTest {
         int diasAlquiler = alquiler.getCantidadDiasAlquiler();
         Double valorMotocicleta = motocicleta.getValorMotocicleta();
         Double seguroVehiculo = (valorMotocicleta*PORCENTAJE_POLIZA_VEHICULO)+(valorMotocicleta*PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO*diferenciaAnios);
+        System.out.println(seguroVehiculo);
         Double polizaPersona = calcularConceptoPolizaPersonal(parrillero,diasAlquiler);
+        System.out.println(polizaPersona);
         Double valorDiasAlquilados = calcularValorPorDiasAlquilados(diasAlquiler);
 
         Double valorTotal = valorDiasAlquilados+polizaPersona+seguroVehiculo;
 
         servicioCrearFactura.ejecutar(factura);
 
-        assertEquals(valorTotal,factura.getValorTotal());
+        assertEquals(valorTotal,factura.getValorTotal(),3.0);
     }
 
     private Double calcularValorPorDiasAlquilados(int diasAlquilados){
