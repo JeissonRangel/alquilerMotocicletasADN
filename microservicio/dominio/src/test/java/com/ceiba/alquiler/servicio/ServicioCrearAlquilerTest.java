@@ -41,7 +41,6 @@ public class ServicioCrearAlquilerTest {
     @InjectMocks
     private ServicioCrearAlquiler servicioCrearAlquiler;
 
-    @InjectMocks
     private Alquiler alquiler = new AlquilerTestDataBuilder().conId(1L).build();
 
     @Mock
@@ -87,6 +86,7 @@ public class ServicioCrearAlquilerTest {
         Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
 
         Long idAlquiler = servicioCrearAlquiler.ejecutar(alquiler);
+        System.out.println(idAlquiler);
 
         assertEquals(1L,idAlquiler);
 
