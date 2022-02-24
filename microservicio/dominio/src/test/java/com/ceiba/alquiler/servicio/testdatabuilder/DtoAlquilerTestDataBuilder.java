@@ -23,6 +23,16 @@ public class DtoAlquilerTestDataBuilder {
         this.planeaLlevarParrillero=true;
     }
 
+    public DtoAlquilerTestDataBuilder noPlaneaSalirCiudad(){
+        this.planeaSalirDeLaCiudad=false;
+        return this;
+    }
+
+    public DtoAlquilerTestDataBuilder noPlaneaLlevarParillero(){
+        this.planeaLlevarParrillero=false;
+        return this;
+    }
+
     public DtoAlquiler build(){
         return new DtoAlquiler(
                 id,

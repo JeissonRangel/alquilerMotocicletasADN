@@ -41,17 +41,15 @@ public class ServicioCrearFactura {
         DtoMotocicleta motocicleta = buscarMotocicletaPorId(idMotocicleta);
         int diasAlquiler = alquilerFactura.getCantidadDiasAlquiler();
 
-        if (alquilerFactura.isPlaneaSalirDeLaCiudad()){
-            factura.setSeguroVehiculo(calcularValorConceptoSeguroVehiculo(motocicleta));
-        }
+        factura.setSeguroVehiculo(calcularValorConceptoSeguroVehiculo(motocicleta));
 
         factura.setPolizaPersonal(calcularConceptoPolizaPersonal(alquilerFactura));
 
-        Double sumatoriaConceptos = factura.getPolizaPersonal()+
+        int sumatoriaConceptos = (int)(factura.getPolizaPersonal()+
                 factura.getSeguroVehiculo()+
-                calcularValorAlquilerPorDias(diasAlquiler);
+                calcularValorAlquilerPorDias(diasAlquiler));
 
-        factura.setValorTotal(sumatoriaConceptos);
+        factura.setValorTotal((double)sumatoriaConceptos);
 
         factura.setFechaCompra(fechaCompra);
 

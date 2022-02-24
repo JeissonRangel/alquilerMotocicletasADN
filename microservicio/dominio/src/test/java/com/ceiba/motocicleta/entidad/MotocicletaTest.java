@@ -24,8 +24,8 @@ public class MotocicletaTest {
 
         assertEquals(1,motocicleta.getId());
         assertEquals("YAMAHA R1M",motocicleta.getNombre());
-        assertEquals(10000000D,motocicleta.getValorMotocicleta());
-        assertEquals(2001,motocicleta.getAnioModelo());
+        assertEquals(1000D,motocicleta.getValorMotocicleta());
+        assertEquals(2020,motocicleta.getAnioModelo());
         assertEquals(true,motocicleta.getDisponible());
     }
 

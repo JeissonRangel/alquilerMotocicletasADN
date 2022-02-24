@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
+
     @Override
     public DtoAlquiler mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Long id = resultSet.getLong("id");
@@ -19,6 +20,14 @@ public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
         Boolean planeaSalirDeLaCiudad = resultSet.getBoolean("planeaSalirDeLaCiudad");
         Boolean planeaLlevarParrillero = resultSet.getBoolean("planeaLlevarParrillero");
 
-        return new DtoAlquiler(id,idPersona,motocicletaId,cantidadDiasAlquiler,fechaDevolucion,planeaSalirDeLaCiudad,planeaLlevarParrillero);
+        return new DtoAlquiler(
+                id,
+                idPersona,
+                motocicletaId,
+                cantidadDiasAlquiler,
+                fechaDevolucion,
+                planeaSalirDeLaCiudad,
+                planeaLlevarParrillero
+        );
     }
 }

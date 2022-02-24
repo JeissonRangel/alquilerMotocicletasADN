@@ -12,7 +12,7 @@ public class DtoMotocicletaTestDataBuilder {
     public DtoMotocicletaTestDataBuilder() {
         this.id = 1L;
         this.nombre = "YAMAHA R1M";
-        this.valorMotocicleta = 1000D;
+        this.valorMotocicleta = 1560D;
         this.anioModelo=2020;
         this.disponible=true;
     }

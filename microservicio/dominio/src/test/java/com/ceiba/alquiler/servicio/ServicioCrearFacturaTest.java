@@ -13,6 +13,7 @@ import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.modelo.entidad.Motocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.servicio.testdatabuilder.MotocicletaTestDataBuilder;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -40,17 +41,13 @@ public class ServicioCrearFacturaTest {
     @Mock
     private DaoAlquiler daoAlquiler;
 
-    private DtoAlquiler dtoAlquiler = new DtoAlquilerTestDataBuilder().build();
+    private DtoAlquiler dtoAlquiler;
 
     @Mock
     private DaoMotocicleta daoMotocicleta;
 
-    private Motocicleta motocicleta = new MotocicletaTestDataBuilder().build();
-
-    @Mock
     private DtoMotocicleta dtoMotocicleta = new DtoMotocicletaTestDataBuilder().build();
 
-    @InjectMocks
     private Alquiler alquiler = new AlquilerTestDataBuilder().build();
 
     @InjectMocks
@@ -60,25 +57,69 @@ public class ServicioCrearFacturaTest {
     private Factura factura = new FacturaTestDataBuilder().build();
 
     @Test
-    void calcularFacturaSalirCiudadConParrillero(){
+    @DisplayName("Calcular valor total de factura de alquiler saliendo de la ciudad y llevando parrilero")
+    void calcularFacturaSalirCiudadConParrillero() {
 
+        dtoAlquiler = new DtoAlquilerTestDataBuilder().build();
         Mockito.doReturn(dtoAlquiler).when(daoAlquiler).buscarPorId(1L);
         Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarPorId(1L);
-        int diferenciaAnios = anioActual - motocicleta.getAnioModelo();
-        Boolean parrillero = alquiler.getPlaneaLlevarParrillero();
-        int diasAlquiler = alquiler.getCantidadDiasAlquiler();
-        Double valorMotocicleta = motocicleta.getValorMotocicleta();
-        Double seguroVehiculo = (valorMotocicleta*PORCENTAJE_POLIZA_VEHICULO)+(valorMotocicleta*PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO*diferenciaAnios);
-        System.out.println(seguroVehiculo);
-        Double polizaPersona = calcularConceptoPolizaPersonal(parrillero,diasAlquiler);
-        System.out.println(polizaPersona);
-        Double valorDiasAlquilados = calcularValorPorDiasAlquilados(diasAlquiler);
 
-        Double valorTotal = valorDiasAlquilados+polizaPersona+seguroVehiculo;
-
+        Double valorTotal = calcularValorTotalFactura();
         servicioCrearFactura.ejecutar(factura);
 
-        assertEquals(valorTotal,factura.getValorTotal(),3.0);
+        assertEquals(valorTotal, factura.getValorTotal());
+    }
+
+    @Test
+    @DisplayName("Calcular valor total de factura de alquiler sin salir de la ciudad llevando parrillero")
+    void calcularFacturaSinSalirCiudadConParrillero(){
+
+        dtoAlquiler = new DtoAlquilerTestDataBuilder().noPlaneaSalirCiudad().build();
+        Mockito.doReturn(dtoAlquiler).when(daoAlquiler).buscarPorId(1L);
+        Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarPorId(1L);
+
+        Double valorTotal = calcularValorTotalFactura();
+        servicioCrearFactura.ejecutar(factura);
+
+        assertEquals(valorTotal, factura.getValorTotal());
+    }
+
+    @Test
+    @DisplayName("Calcular valor total de factura de alquiler saliendo de la ciudad sin llevar parrillero")
+    void calcularFacturaSalirCiudadSinParrillero(){
+        dtoAlquiler = new DtoAlquilerTestDataBuilder().noPlaneaLlevarParillero().build();
+        Mockito.doReturn(dtoAlquiler).when(daoAlquiler).buscarPorId(1L);
+        Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarPorId(1L);
+
+        Double valorTotal = calcularValorTotalFactura();
+        servicioCrearFactura.ejecutar(factura);
+
+        assertEquals(valorTotal,factura.getValorTotal());
+    }
+
+    @Test
+    void calcularFacturaSinSalirCiudadSinParrillero(){
+        dtoAlquiler = new DtoAlquilerTestDataBuilder().noPlaneaLlevarParillero().build();
+        Mockito.doReturn(dtoAlquiler).when(daoAlquiler).buscarPorId(1L);
+        Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarPorId(1L);
+
+        Double valorTotal = calcularValorTotalFactura();
+        servicioCrearFactura.ejecutar(factura);
+
+        assertEquals(valorTotal,factura.getValorTotal());
+    }
+
+    private Double calcularValorTotalFactura(){
+        int diferenciaAnios = anioActual - dtoMotocicleta.getAnioModelo();
+        Boolean parrillero = dtoAlquiler.isPlaneaLlevarParrillero();
+        int diasAlquiler = dtoAlquiler.getCantidadDiasAlquiler();
+        Double valorMotocicleta = dtoMotocicleta.getValorMotocicleta();
+        Double seguroVehiculo = (valorMotocicleta * PORCENTAJE_POLIZA_VEHICULO) + (valorMotocicleta * PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO * diferenciaAnios);
+        Double polizaPersona = calcularConceptoPolizaPersonal(parrillero, diasAlquiler);
+        Double valorDiasAlquilados = calcularValorPorDiasAlquilados(diasAlquiler);
+        int valorTotal = (int)(valorDiasAlquilados + polizaPersona + seguroVehiculo);
+
+        return (double)valorTotal;
     }
 
     private Double calcularValorPorDiasAlquilados(int diasAlquilados){
