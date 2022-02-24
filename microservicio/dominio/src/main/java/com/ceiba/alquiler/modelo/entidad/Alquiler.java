@@ -15,7 +15,6 @@ public class Alquiler {
     private Long id;
     private Long personaId;
     private Long motocicletaId;
-    //Cambiar atributos a entidades
     private int cantidadDiasAlquiler;
     private LocalDate fechaDevolucion;
     private Boolean planeaSalirDeLaCiudad;
@@ -26,7 +25,6 @@ public class Alquiler {
             Long personaId,
             Long motocicletaId,
             int cantidadDiasAlquiler,
-            LocalDate fechaDevolucion,
             Boolean planeaSalirDeLaCiudad,
             Boolean planeaLlevarParrillero
     ) {
@@ -37,7 +35,7 @@ public class Alquiler {
         this.personaId = personaId;
         this.motocicletaId = motocicletaId;
         this.cantidadDiasAlquiler = cantidadDiasAlquiler;
-        this.fechaDevolucion = fechaDevolucion;
+        this.fechaDevolucion = LocalDate.now().plusDays(cantidadDiasAlquiler);
         this.planeaSalirDeLaCiudad = planeaSalirDeLaCiudad;
         this.planeaLlevarParrillero = planeaLlevarParrillero;
     }

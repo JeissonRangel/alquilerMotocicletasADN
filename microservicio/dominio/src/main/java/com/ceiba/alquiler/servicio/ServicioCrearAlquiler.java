@@ -3,7 +3,6 @@ package com.ceiba.alquiler.servicio;
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionNoMotocicletasDisponibles;
-import com.ceiba.motocicleta.modelo.dto.DtoMotocicleta;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
@@ -27,10 +26,20 @@ public class ServicioCrearAlquiler {
     }
 
     public Long ejecutar(Alquiler alquiler){
+        int diasAlquiler = alquiler.getCantidadDiasAlquiler();
         validarDisponibilidadMotocicletas();
-        LocalDate fechaDevolucion = calcularFechaDevolucion(alquiler);
         Long motocicletaId = traerIdMotocicletaDisponible();
-        return this.repositorioAlquiler.crear(alquiler);
+
+        Alquiler alquilerCalculado = new Alquiler(
+                alquiler.getId(),
+                alquiler.getPersonaId(),
+                motocicletaId,
+                alquiler.getCantidadDiasAlquiler(),
+                alquiler.getPlaneaSalirDeLaCiudad(),
+                alquiler.getPlaneaLlevarParrillero()
+        );
+
+        return this.repositorioAlquiler.crear(alquilerCalculado);
     }
 
     private void validarDisponibilidadMotocicletas(){
@@ -50,9 +59,8 @@ public class ServicioCrearAlquiler {
         repositorioMotocicleta.actualizarDisponibilidadPorId(motocicletaId, disponible);
     }
 
-    private LocalDate calcularFechaDevolucion(Alquiler alquiler){
-        int diasASumar = alquiler.getCantidadDiasAlquiler();
-        LocalDate fechaDevolucionCalculada = LocalDate.now().plusDays(diasASumar);
+    private LocalDate calcularFechaDevolucion(int cantidadDiasAlquiler){
+        LocalDate fechaDevolucionCalculada = LocalDate.now().plusDays(cantidadDiasAlquiler);
         return fechaDevolucionCalculada;
     }
 

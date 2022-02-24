@@ -12,7 +12,6 @@ public class FabricaAlquiler {
                 comandoAlquiler.getPersonaId(),
                 comandoAlquiler.getMotocicletaID(),
                 comandoAlquiler.getCantidadDiasAlquiler(),
-                comandoAlquiler.getFechaDevolucion(),
                 comandoAlquiler.isPlaneaSalirDeLaCiudad(),
                 comandoAlquiler.isPlaneaLlevarParrillero()
         );

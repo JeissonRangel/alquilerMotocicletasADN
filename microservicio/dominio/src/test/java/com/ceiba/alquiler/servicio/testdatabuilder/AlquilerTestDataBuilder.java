@@ -55,7 +55,6 @@ public class AlquilerTestDataBuilder {
                 personaId,
                 motocicletaID,
                 cantidadDiasAlquiler,
-                fechaDevolucion,
                 planeaSalirDeLaCiudad,
                 planeaLlevarParrillero);
     }

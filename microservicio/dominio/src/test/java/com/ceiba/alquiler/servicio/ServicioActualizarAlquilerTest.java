@@ -21,9 +21,6 @@ public class ServicioActualizarAlquilerTest {
     private static final String EL_ALQUILER_NO_EXISTE = "Este alquiler no existe en el sistema";
 
     @Mock
-    private DaoAlquiler daoAlquiler;
-
-    @Mock
     private RepositorioAlquiler repositorioAlquiler;
 
     @InjectMocks

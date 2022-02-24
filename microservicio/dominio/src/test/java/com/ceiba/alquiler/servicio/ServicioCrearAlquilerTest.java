@@ -41,7 +41,8 @@ public class ServicioCrearAlquilerTest {
     @InjectMocks
     private ServicioCrearAlquiler servicioCrearAlquiler;
 
-    private Alquiler alquiler = new AlquilerTestDataBuilder().build();
+    @InjectMocks
+    private Alquiler alquiler = new AlquilerTestDataBuilder().conId(1L).build();
 
     @Mock
     private Motocicleta motocicleta;
@@ -52,7 +53,7 @@ public class ServicioCrearAlquilerTest {
     @DisplayName("Deberia lanzar una excepcion si no hay motocicletas disponibles")
     void deberiaLanzarUnaExcepcionSiNoHayMotocicletasDisponibles(){
         //Arrange
-        Mockito.doReturn(false).when(daoMotocicleta).validarDisponibilidad();
+        Mockito.doReturn(false).when(repositorioMotocicleta).validarDisponibilidad();
 
         //Act-Assert
         BasePrueba.assertThrows(() -> servicioCrearAlquiler.ejecutar(alquiler),
@@ -64,10 +65,9 @@ public class ServicioCrearAlquilerTest {
     @Test
     @DisplayName("Deberia calcular la fecha de devolucion de un alquiler")
     void deberiaCalcularLaFechaDevolucionDelAlquiler(){
-        int cantidadDiasAlquiler = alquiler.getCantidadDiasAlquiler();
-        System.out.println(cantidadDiasAlquiler);
-        Mockito.doReturn(true).when(daoMotocicleta).validarDisponibilidad();
-        Mockito.doReturn(1L).when(motocicleta).getId();
+
+        int cantidadDiasAlquiler = 10;
+        Mockito.doReturn(true).when(repositorioMotocicleta).validarDisponibilidad();
         Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarDisponible();
         Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
 
@@ -81,11 +81,10 @@ public class ServicioCrearAlquilerTest {
     @Test
     @DisplayName("Deberia crear el alquiler de forma correcta")
     void deberiaCrearElAlquilerDeFormaCorrecta(){
-        Mockito.doReturn(true).when(daoMotocicleta).validarDisponibilidad();
-        Mockito.doReturn(1L).when(motocicleta).getId();
+
+        Mockito.doReturn(true).when(repositorioMotocicleta).validarDisponibilidad();
         Mockito.doReturn(dtoMotocicleta).when(daoMotocicleta).buscarDisponible();
         Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
-        Mockito.doReturn(1L).when(repositorioAlquiler).crear(alquiler);
 
         Long idAlquiler = servicioCrearAlquiler.ejecutar(alquiler);
 
