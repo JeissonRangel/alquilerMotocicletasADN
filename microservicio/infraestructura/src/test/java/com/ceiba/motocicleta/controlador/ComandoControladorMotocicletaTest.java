@@ -45,7 +45,7 @@ public class ComandoControladorMotocicletaTest {
     @Test
     @DisplayName("Deberia actualizar una motocicleta")
     void deberiaActualizarMotocicleta() throws Exception{
-        Long id = 1L;
+        Long id = 2L;
         ComandoMotocicleta comandoMotocicleta = new ComandoMotocicletaTestDataBuilder().build();
 
         mockMvc.perform( put("/motocicleta/{id}",id)

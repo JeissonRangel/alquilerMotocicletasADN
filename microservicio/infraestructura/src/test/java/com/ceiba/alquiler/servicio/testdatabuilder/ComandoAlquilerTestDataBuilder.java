@@ -36,7 +36,6 @@ public class ComandoAlquilerTestDataBuilder {
                 personaId,
                 motocicletaID,
                 cantidadDiasAlquiler,
-                fechaDevolucion,
                 planeaSalirDeLaCiudad,
                 planeaLlevarParrillero);
     }

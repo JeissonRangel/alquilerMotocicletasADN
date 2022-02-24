@@ -35,16 +35,10 @@ public class ServicioCrearAlquilerTest {
     @Mock
     private RepositorioMotocicleta repositorioMotocicleta;
 
-    @Mock
-    private RepositorioAlquiler repositorioAlquiler;
-
     @InjectMocks
     private ServicioCrearAlquiler servicioCrearAlquiler;
 
     private Alquiler alquiler = new AlquilerTestDataBuilder().conId(1L).build();
-
-    @Mock
-    private Motocicleta motocicleta;
 
     private LocalDate FECHA_ACTUAL = LocalDate.now();
 
@@ -59,6 +53,7 @@ public class ServicioCrearAlquilerTest {
                 ExcepcionNoMotocicletasDisponibles.class,
                 NO_HAY_MOTOCICLETAS_DISPONIBLES
         );
+
     }
 
     @Test
@@ -71,10 +66,10 @@ public class ServicioCrearAlquilerTest {
         Mockito.doNothing().when(repositorioMotocicleta).actualizarDisponibilidadPorId(1L,false);
 
         LocalDate fechaDevolucion = FECHA_ACTUAL.plusDays(cantidadDiasAlquiler);
-
         servicioCrearAlquiler.ejecutar(alquiler);
 
         assertEquals(fechaDevolucion,alquiler.getFechaDevolucion());
+
     }
 
     @Test
