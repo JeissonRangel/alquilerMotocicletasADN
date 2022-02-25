@@ -26,6 +26,11 @@ public class ComandoFacturaTestDataBuilder {
         return this;
     }
 
+    public ComandoFacturaTestDataBuilder conIdAlquiler(Long idAlquiler){
+        this.idAlquiler = idAlquiler;
+        return this;
+    }
+
     public ComandoFactura build(){
         return new ComandoFactura(
                 id,

@@ -22,4 +22,6 @@ public class RepositorioFacturaH2 implements RepositorioFactura {
     public Long crear(Factura factura) {
         return this.customNamedParameterJdbcTemplate.crear(factura,sqlCrear);
     }
+
+
 }
