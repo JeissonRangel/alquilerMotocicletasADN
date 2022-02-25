@@ -35,15 +35,18 @@ public class ServicioCrearFactura {
     public Long ejecutar(Factura factura){
 
         Long idAlquiler = factura.getIdAlquiler();
+        System.out.println(idAlquiler);
         LocalDate fechaCompra = LocalDate.now();
         DtoAlquiler alquilerFactura = buscarAlquilerPorId(idAlquiler);
+        System.out.println(alquilerFactura.getId());
         Long idMotocicleta = alquilerFactura.getMotocicletaId();
         DtoMotocicleta motocicleta = buscarMotocicletaPorId(idMotocicleta);
         int diasAlquiler = alquilerFactura.getCantidadDiasAlquiler();
+        Boolean parrillero = alquilerFactura.isPlaneaLlevarParrillero();
 
         factura.setSeguroVehiculo(calcularValorConceptoSeguroVehiculo(motocicleta));
 
-        factura.setPolizaPersonal(calcularConceptoPolizaPersonal(alquilerFactura));
+        factura.setPolizaPersonal(calcularConceptoPolizaPersonal(parrillero,diasAlquiler));
 
         int sumatoriaConceptos = (int)(factura.getPolizaPersonal()+
                 factura.getSeguroVehiculo()+
@@ -65,32 +68,22 @@ public class ServicioCrearFactura {
     }
 
     private Double calcularValorAlquilerPorDias(int diasAlquiler){
-
-        Double valorConcepto = diasAlquiler*VALOR_DIA_DE_ALQUILER;
-
-        return valorConcepto;
+        return diasAlquiler*VALOR_DIA_DE_ALQUILER;
     }
 
-    private Double calcularConceptoPolizaPersonal(DtoAlquiler alquiler){
-        Double valorConcepto=0D;
+    private Double calcularConceptoPolizaPersonal(Boolean parrillero, int diasAlquiler){
 
-        if (alquiler.isPlaneaLlevarParrillero()){
-            valorConcepto = VALOR_DIA_DE_ALQUILER*
-                    PORCENTAJE_POLIZA_CON_PARRILLERO*
-                    alquiler.getCantidadDiasAlquiler();
+        if (!parrillero){
+            Double valorConcepto = VALOR_DIA_DE_ALQUILER*
+                    PORCENTAJE_POLIZA_SIN_PARRILLERO*
+                    diasAlquiler;
 
             return valorConcepto;
         }
-        valorConcepto = VALOR_DIA_DE_ALQUILER*
-                PORCENTAJE_POLIZA_SIN_PARRILLERO*
-                alquiler.getCantidadDiasAlquiler();
-
-        return valorConcepto;
+        return VALOR_DIA_DE_ALQUILER*PORCENTAJE_POLIZA_CON_PARRILLERO*diasAlquiler;
     }
 
     private Double calcularValorConceptoSeguroVehiculo(DtoMotocicleta motocicleta){
-
-        Double valorConcepto=0D;
 
         Double valorVehiculo = motocicleta.getValorMotocicleta();
 
@@ -98,7 +91,7 @@ public class ServicioCrearFactura {
 
         Double valorConceptoPorAnioModelo = (valorVehiculo * PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO) * diferenciaAnios;
 
-        valorConcepto = (valorVehiculo * PORCENTAJE_POLIZA_VEHICULO) + valorConceptoPorAnioModelo;
+        Double valorConcepto = (valorVehiculo * PORCENTAJE_POLIZA_VEHICULO) + valorConceptoPorAnioModelo;
 
         return valorConcepto;
     }

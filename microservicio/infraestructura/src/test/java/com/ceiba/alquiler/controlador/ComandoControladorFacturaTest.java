@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ComandoControladorFactura.class)
 @ContextConfiguration(classes = ApplicationMock.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ComandoControladorFacturaTest {
 
     @Mock
@@ -42,14 +44,14 @@ public class ComandoControladorFacturaTest {
     @Test
     @DisplayName("Deberia crear factura")
     void deberiaCrearFactura() throws Exception{
-        ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().conId(3L).conIdAlquiler(1L).build();
-        Mockito.doReturn(dtoAlquiler).when(daoAlquilerH2).buscarPorId(Mockito.anyLong());
+        ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().conId(2L).conIdAlquiler(1L).build();
+        Mockito.doReturn(dtoAlquiler).when(daoAlquilerH2).buscarPorId(1L);
 
         mockMvc.perform(post("/factura")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(comandoFactura)))
                         .andExpect(status().isOk())
-                        .andExpect(content().json("{'valor':3}"));
+                        .andExpect(content().json("{'valor':2}"));
 
     }
 }

@@ -26,7 +26,6 @@ public class ServicioCrearAlquiler {
     }
 
     public Long ejecutar(Alquiler alquiler){
-        int diasAlquiler = alquiler.getCantidadDiasAlquiler();
         validarDisponibilidadMotocicletas();
         Long motocicletaId = traerIdMotocicletaDisponible();
 
@@ -57,11 +56,6 @@ public class ServicioCrearAlquiler {
 
     private void actualizarDisponibilidadMotocicleta(Long motocicletaId, Boolean disponible){
         repositorioMotocicleta.actualizarDisponibilidadPorId(motocicletaId, disponible);
-    }
-
-    private LocalDate calcularFechaDevolucion(int cantidadDiasAlquiler){
-        LocalDate fechaDevolucionCalculada = LocalDate.now().plusDays(cantidadDiasAlquiler);
-        return fechaDevolucionCalculada;
     }
 
 }

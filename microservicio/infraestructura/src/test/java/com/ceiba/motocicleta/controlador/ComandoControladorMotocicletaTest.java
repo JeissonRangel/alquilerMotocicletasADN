@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ComandoControladorMotocicleta.class)
 @ContextConfiguration(classes = ApplicationMock.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ComandoControladorMotocicletaTest {
 
     @Autowired
@@ -45,7 +47,7 @@ public class ComandoControladorMotocicletaTest {
     @Test
     @DisplayName("Deberia actualizar una motocicleta")
     void deberiaActualizarMotocicleta() throws Exception{
-        Long id = 2L;
+        Long id = 1L;
         ComandoMotocicleta comandoMotocicleta = new ComandoMotocicletaTestDataBuilder().build();
 
         mockMvc.perform( put("/motocicleta/{id}",id)
