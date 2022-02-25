@@ -3,12 +3,14 @@ package com.ceiba.alquiler.controlador;
 import com.ceiba.ApplicationMock;
 import com.ceiba.alquiler.adaptador.dao.DaoAlquilerH2;
 import com.ceiba.alquiler.comando.ComandoFactura;
+import com.ceiba.alquiler.modelo.dto.DtoAlquiler;
 import com.ceiba.alquiler.servicio.testdatabuilder.ComandoFacturaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
@@ -28,6 +30,9 @@ public class ComandoControladorFacturaTest {
     @Mock
     private DaoAlquilerH2 daoAlquilerH2;
 
+    @Mock
+    private DtoAlquiler dtoAlquiler;
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -37,7 +42,8 @@ public class ComandoControladorFacturaTest {
     @Test
     @DisplayName("Deberia crear factura")
     void deberiaCrearFactura() throws Exception{
-        ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().conId(3L).conIdAlquiler(2L).build();
+        ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().conId(3L).conIdAlquiler(1L).build();
+        Mockito.doReturn(dtoAlquiler).when(daoAlquilerH2).buscarPorId(Mockito.anyLong());
 
         mockMvc.perform(post("/factura")
                         .contentType(MediaType.APPLICATION_JSON)
