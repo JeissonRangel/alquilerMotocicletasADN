@@ -19,6 +19,6 @@ public class MapeoFactura implements RowMapper<DtoFactura>, MapperResult{
         Double seguroVehiculo = rs.getDouble("seguroVehiculo");
         Double polizaPersonal = rs.getDouble("polizaPersonal");
         LocalDate fechaCompra = extraerLocalDate(rs,"fechaCompra");
-        return null;
+        return new DtoFactura(id,idAlquiler,valorTotal,seguroVehiculo,polizaPersonal,fechaCompra);
     }
 }

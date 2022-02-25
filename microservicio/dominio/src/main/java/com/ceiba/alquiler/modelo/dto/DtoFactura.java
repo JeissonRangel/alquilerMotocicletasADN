@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Map;
 
-
+@Getter
+@AllArgsConstructor
 public class DtoFactura {
     private Long id;
     private Long idAlquiler;
-    private double valorTotal;
-    private Map<Integer,String> conceptosFactura;
+    private Double valorTotal;
+    private Double seguroVehiculo;
+    private Double polizaPersonal;
     private LocalDate fechaCompra;
 }
