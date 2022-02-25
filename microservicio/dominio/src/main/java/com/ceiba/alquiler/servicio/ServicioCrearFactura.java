@@ -85,9 +85,7 @@ public class ServicioCrearFactura {
 
         Double valorConceptoPorAnioModelo = (valorVehiculo * PORCENTAJE_POR_ANIO_MODELO_POLIZA_VEHICULO) * diferenciaAnios;
 
-        Double valorConcepto = (valorVehiculo * PORCENTAJE_POLIZA_VEHICULO) + valorConceptoPorAnioModelo;
-
-        return valorConcepto;
+        return (valorVehiculo * PORCENTAJE_POLIZA_VEHICULO) + valorConceptoPorAnioModelo;
     }
 
 }
