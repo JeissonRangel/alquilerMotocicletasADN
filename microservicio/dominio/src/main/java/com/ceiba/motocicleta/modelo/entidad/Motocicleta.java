@@ -15,7 +15,7 @@ public class Motocicleta {
     private static final int LONGITUD_MINIMA_NOMBRE = 4;
 
     private Long id;
-    private String nombre;
+    private String nombre; // NOSONAR
     private Double valorMotocicleta;
     private int anioModelo;
     private Boolean disponible;

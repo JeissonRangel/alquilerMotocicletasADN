@@ -35,10 +35,8 @@ public class ServicioCrearFactura {
     public Long ejecutar(Factura factura){
 
         Long idAlquiler = factura.getIdAlquiler();
-        System.out.println(idAlquiler);
         LocalDate fechaCompra = LocalDate.now();
         DtoAlquiler alquilerFactura = buscarAlquilerPorId(idAlquiler);
-        System.out.println(alquilerFactura.getId());
         Long idMotocicleta = alquilerFactura.getMotocicletaId();
         DtoMotocicleta motocicleta = buscarMotocicletaPorId(idMotocicleta);
         int diasAlquiler = alquilerFactura.getCantidadDiasAlquiler();
@@ -74,11 +72,7 @@ public class ServicioCrearFactura {
     private Double calcularConceptoPolizaPersonal(Boolean parrillero, int diasAlquiler){
 
         if (!parrillero){
-            Double valorConcepto = VALOR_DIA_DE_ALQUILER*
-                    PORCENTAJE_POLIZA_SIN_PARRILLERO*
-                    diasAlquiler;
-
-            return valorConcepto;
+            return VALOR_DIA_DE_ALQUILER*PORCENTAJE_POLIZA_SIN_PARRILLERO*diasAlquiler;
         }
         return VALOR_DIA_DE_ALQUILER*PORCENTAJE_POLIZA_CON_PARRILLERO*diasAlquiler;
     }
