@@ -55,7 +55,7 @@ public class ServicioCrearFactura {
         factura.setFechaCompra(fechaCompra);
 
         return repositorioFactura.crear(factura);
-    };
+    }
 
     private DtoAlquiler buscarAlquilerPorId(Long idAlquiler){
         return this.daoAlquiler.buscarPorId(idAlquiler);

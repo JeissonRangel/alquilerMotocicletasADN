@@ -12,5 +12,5 @@ public class ServicioCrearMotocicleta {
 
     public Long ejecutar(Motocicleta motocicleta){
         return this.repositorioMotocicleta.crear(motocicleta);
-    };
+    }
 }

@@ -14,11 +14,11 @@ public class Motocicleta {
     private static final String DEBE_INGRESAR_ANIO_MODELO_VALIDO = "Debe ingresar un año de modelo valido";
     private static final int LONGITUD_MINIMA_NOMBRE = 4;
 
-    private Long id;
+    private Long id; // NOSONAR
     private String nombre; // NOSONAR
-    private Double valorMotocicleta;
-    private int anioModelo;
-    private Boolean disponible;
+    private Double valorMotocicleta; // NOSONAR
+    private int anioModelo; // NOSONAR
+    private Boolean disponible; // NOSONAR
 
     public Motocicleta(Long id, String nombre, Double valorMotocicleta, int anioModelo, Boolean disponible) {
         validarObligatorio(nombre,DEBE_INGRESA_NOMBRE_MOTOCICLETA);
