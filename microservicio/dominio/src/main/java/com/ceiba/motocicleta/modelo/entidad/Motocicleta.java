@@ -29,6 +29,6 @@ public class Motocicleta {
         this.nombre = nombre;
         this.valorMotocicleta = valorMotocicleta;
         this.anioModelo = anioModelo;
-        this.disponible = disponible;
+        this.disponible = true;
     }
 }

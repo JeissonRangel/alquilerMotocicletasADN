@@ -6,8 +6,6 @@ import com.ceiba.dominio.excepcion.ExcepcionNoMotocicletasDisponibles;
 import com.ceiba.motocicleta.puerto.dao.DaoMotocicleta;
 import com.ceiba.motocicleta.puerto.repositorio.RepositorioMotocicleta;
 
-import java.time.LocalDate;
-
 public class ServicioCrearAlquiler {
 
     private static final String NO_HAY_MOTOCICLETAS_DISPONIBLES = "En este momento no hay motocicletas disponibles para alquilar";

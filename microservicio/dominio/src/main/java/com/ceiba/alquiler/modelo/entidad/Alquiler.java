@@ -9,7 +9,7 @@ import static  com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
 public class Alquiler {
-    private static final String DEBE_INGRESAR_UNA_IDENTIFICACION = "Debe ingresar una identificacion";
+    private static final String DEBE_INGRESAR_UNA_IDENTIFICACION = "Debe ingresar una identificacion de persona";
     private static final String DEBE_INGRESAR_UNA_CANTIDAD_DE_DIAS_VALIDA = "La cantidad de dias que ingreso no es valida";
 
     private Long id; // NOSONAR

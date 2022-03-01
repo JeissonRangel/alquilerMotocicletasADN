@@ -8,7 +8,7 @@ import com.ceiba.alquiler.comando.manejador.ManejadorEliminarAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/alquiler")
 public class ComandoControladorAlquiler {

@@ -27,7 +27,7 @@ pipeline {
 			submoduleCfg: [],
 			userRemoteConfigs: [[
 				credentialsId: 'GitHub_JeissonRangel',
-				url:'https://github.com/JeissonRangel/alquilerMotocicletasADN.git'
+				url:'https://github.com/JeissonRangel/alquilerMotocicletasADN'
 			]]
 		])
       }

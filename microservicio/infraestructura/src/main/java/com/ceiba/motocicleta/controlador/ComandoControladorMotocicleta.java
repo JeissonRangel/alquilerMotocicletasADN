@@ -7,7 +7,7 @@ import com.ceiba.motocicleta.comando.manejador.ManejadorCrearMotocicleta;
 import com.ceiba.motocicleta.comando.manejador.ManejadorEliminarMotocicleta;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/motocicleta")
 public class ComandoControladorMotocicleta {
