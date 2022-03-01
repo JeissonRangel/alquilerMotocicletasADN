@@ -11,7 +11,6 @@ public class FabricaMotocicleta {
                 comandoMotocicleta.getId(),
                 comandoMotocicleta.getNombre(),
                 comandoMotocicleta.getValorMotocicleta(),
-                comandoMotocicleta.getAnioModelo(),
-                comandoMotocicleta.getDisponible());
+                comandoMotocicleta.getAnioModelo());
     }
 }

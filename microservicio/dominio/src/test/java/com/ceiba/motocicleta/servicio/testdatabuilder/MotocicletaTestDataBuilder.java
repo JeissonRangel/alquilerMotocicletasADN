@@ -47,8 +47,7 @@ public class MotocicletaTestDataBuilder {
                 this.id,
                 this.nombre,
                 this.valorMotocicleta,
-                this.anioModelo,
-                this.disponible
+                this.anioModelo
         );
     }
 }
