@@ -20,7 +20,7 @@ public class Motocicleta {
     private int anioModelo; // NOSONAR
     private Boolean disponible; // NOSONAR
 
-    public Motocicleta(Long id, String nombre, Double valorMotocicleta, int anioModelo, Boolean disponible) {
+    public Motocicleta(Long id, String nombre, Double valorMotocicleta, int anioModelo) {
         validarObligatorio(nombre,DEBE_INGRESA_NOMBRE_MOTOCICLETA);
         validarLongitud(nombre,LONGITUD_MINIMA_NOMBRE, LONGITUD_DE_NOMBRE_DEBE_SER_MINIMO);
         validarPositivo(valorMotocicleta, VALOR_MOTOCICLETA_NO_PERMITIDO);
